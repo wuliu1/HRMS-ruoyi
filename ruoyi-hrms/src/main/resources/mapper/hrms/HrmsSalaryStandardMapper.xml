@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.HrmsSalaryStandardMapper">
+    
+    <resultMap type="HrmsSalaryStandard" id="HrmsSalaryStandardResult">
+        <result property="ID"    column="ID"    />
+        <result property="NAME"    column="NAME"    />
+        <result property="JBGZ"    column="JBGZ"    />
+        <result property="JTBZ"    column="JTBZ"    />
+        <result property="WCBZ"    column="WCBZ"    />
+        <result property="TXBZ"    column="TXBZ"    />
+        <result property="YLAOBX"    column="YLAOBX"    />
+        <result property="SYBX"    column="SYBX"    />
+        <result property="YLIAOBX"    column="YLIAOBX"    />
+        <result property="ZFGJJ"    column="ZFGJJ"    />
+        <result property="createdBy"    column="CREATED_BY"    />
+        <result property="createdTime"    column="CREATED_TIME"    />
+        <result property="updatedBy"    column="UPDATED_BY"    />
+        <result property="updatedTime"    column="UPDATED_TIME"    />
+    </resultMap>
+
+    <sql id="selectHrmsSalaryStandardVo">
+        select ID, NAME, JBGZ, JTBZ, WCBZ, TXBZ, YLAOBX, SYBX, YLIAOBX, ZFGJJ, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME from hrms_salary_standard
+    </sql>
+
+    <select id="selectHrmsSalaryStandardList" parameterType="HrmsSalaryStandard" resultMap="HrmsSalaryStandardResult">
+        <include refid="selectHrmsSalaryStandardVo"/>
+        <where>  
+            <if test="NAME != null  and NAME != ''"> and NAME like concat('%', #{NAME}, '%')</if>
+            <if test="JBGZ != null "> and JBGZ = #{JBGZ}</if>
+            <if test="JTBZ != null "> and JTBZ = #{JTBZ}</if>
+            <if test="WCBZ != null "> and WCBZ = #{WCBZ}</if>
+            <if test="TXBZ != null "> and TXBZ = #{TXBZ}</if>
+            <if test="YLAOBX != null "> and YLAOBX = #{YLAOBX}</if>
+            <if test="SYBX != null "> and SYBX = #{SYBX}</if>
+            <if test="YLIAOBX != null "> and YLIAOBX = #{YLIAOBX}</if>
+            <if test="ZFGJJ != null "> and ZFGJJ = #{ZFGJJ}</if>
+            <if test="createdBy != null  and createdBy != ''"> and CREATED_BY = #{createdBy}</if>
+            <if test="createdTime != null "> and CREATED_TIME = #{createdTime}</if>
+            <if test="updatedBy != null  and updatedBy != ''"> and UPDATED_BY = #{updatedBy}</if>
+            <if test="updatedTime != null "> and UPDATED_TIME = #{updatedTime}</if>
+        </where>
+    </select>
+    
+    <select id="selectHrmsSalaryStandardByID" parameterType="String" resultMap="HrmsSalaryStandardResult">
+        <include refid="selectHrmsSalaryStandardVo"/>
+        where ID = #{ID}
+    </select>
+        
+    <insert id="insertHrmsSalaryStandard" parameterType="HrmsSalaryStandard">
+        insert into hrms_salary_standard
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ID != null">ID,</if>
+            <if test="NAME != null">NAME,</if>
+            <if test="JBGZ != null">JBGZ,</if>
+            <if test="JTBZ != null">JTBZ,</if>
+            <if test="WCBZ != null">WCBZ,</if>
+            <if test="TXBZ != null">TXBZ,</if>
+            <if test="YLAOBX != null">YLAOBX,</if>
+            <if test="SYBX != null">SYBX,</if>
+            <if test="YLIAOBX != null">YLIAOBX,</if>
+            <if test="ZFGJJ != null">ZFGJJ,</if>
+            <if test="createdBy != null">CREATED_BY,</if>
+            <if test="createdTime != null">CREATED_TIME,</if>
+            <if test="updatedBy != null">UPDATED_BY,</if>
+            <if test="updatedTime != null">UPDATED_TIME,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ID != null">#{ID},</if>
+            <if test="NAME != null">#{NAME},</if>
+            <if test="JBGZ != null">#{JBGZ},</if>
+            <if test="JTBZ != null">#{JTBZ},</if>
+            <if test="WCBZ != null">#{WCBZ},</if>
+            <if test="TXBZ != null">#{TXBZ},</if>
+            <if test="YLAOBX != null">#{YLAOBX},</if>
+            <if test="SYBX != null">#{SYBX},</if>
+            <if test="YLIAOBX != null">#{YLIAOBX},</if>
+            <if test="ZFGJJ != null">#{ZFGJJ},</if>
+            <if test="createdBy != null">#{createdBy},</if>
+            <if test="createdTime != null">#{createdTime},</if>
+            <if test="updatedBy != null">#{updatedBy},</if>
+            <if test="updatedTime != null">#{updatedTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateHrmsSalaryStandard" parameterType="HrmsSalaryStandard">
+        update hrms_salary_standard
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="NAME != null">NAME = #{NAME},</if>
+            <if test="JBGZ != null">JBGZ = #{JBGZ},</if>
+            <if test="JTBZ != null">JTBZ = #{JTBZ},</if>
+            <if test="WCBZ != null">WCBZ = #{WCBZ},</if>
+            <if test="TXBZ != null">TXBZ = #{TXBZ},</if>
+            <if test="YLAOBX != null">YLAOBX = #{YLAOBX},</if>
+            <if test="SYBX != null">SYBX = #{SYBX},</if>
+            <if test="YLIAOBX != null">YLIAOBX = #{YLIAOBX},</if>
+            <if test="ZFGJJ != null">ZFGJJ = #{ZFGJJ},</if>
+            <if test="createdBy != null">CREATED_BY = #{createdBy},</if>
+            <if test="createdTime != null">CREATED_TIME = #{createdTime},</if>
+            <if test="updatedBy != null">UPDATED_BY = #{updatedBy},</if>
+            <if test="updatedTime != null">UPDATED_TIME = #{updatedTime},</if>
+        </trim>
+        where ID = #{ID}
+    </update>
+
+    <delete id="deleteHrmsSalaryStandardByID" parameterType="String">
+        delete from hrms_salary_standard where ID = #{ID}
+    </delete>
+
+    <delete id="deleteHrmsSalaryStandardByIDs" parameterType="String">
+        delete from hrms_salary_standard where ID in 
+        <foreach item="ID" collection="array" open="(" separator="," close=")">
+            #{ID}
+        </foreach>
+    </delete>
+
+</mapper>

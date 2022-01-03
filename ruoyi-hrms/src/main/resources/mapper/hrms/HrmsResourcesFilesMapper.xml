@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.HrmsResourcesFilesMapper">
+    
+    <resultMap type="HrmsResourcesFiles" id="HrmsResourcesFilesResult">
+        <result property="ID"    column="ID"    />
+        <result property="oneJjgou"    column="ONE_JJGOU"    />
+        <result property="twoJjgou"    column="TWO_JJGOU"    />
+        <result property="threeJjgou"    column="THREE_JJGOU"    />
+        <result property="ZWFL"    column="ZWFL"    />
+        <result property="ZWMC"    column="ZWMC"    />
+        <result property="ZC"    column="ZC"    />
+        <result property="NAME"    column="NAME"    />
+        <result property="SEX"    column="SEX"    />
+        <result property="EMAIL"    column="EMAIL"    />
+        <result property="PHONE"    column="PHONE"    />
+        <result property="QQ"    column="QQ"    />
+        <result property="mobilePhone"    column="MOBILE_PHONE"    />
+        <result property="ADDRESS"    column="ADDRESS"    />
+        <result property="POSTCODE"    column="POSTCODE"    />
+        <result property="NATIONALITY"    column="NATIONALITY"    />
+        <result property="birthPlace"    column="BIRTH_PLACE"    />
+        <result property="BIRTHDAY"    column="BIRTHDAY"    />
+        <result property="NATION"    column="NATION"    />
+        <result property="RELIGIOUS"    column="RELIGIOUS"    />
+        <result property="POLITICAL"    column="POLITICAL"    />
+        <result property="idNumber"    column="ID_NUMBER"    />
+        <result property="SHBZM"    column="SHBZM"    />
+        <result property="AGE"    column="AGE"    />
+        <result property="EDUCATION"    column="EDUCATION"    />
+        <result property="educationYear"    column="EDUCATION_YEAR"    />
+        <result property="PROFESSIONAL"    column="PROFESSIONAL"    />
+        <result property="salaryStandard"    column="SALARY_STANDARD"    />
+        <result property="openBank"    column="OPEN_BANK"    />
+        <result property="ACCOUNT"    column="ACCOUNT"    />
+        <result property="SPECIALITY"    column="SPECIALITY"    />
+        <result property="HOBBY"    column="HOBBY"    />
+        <result property="RESUME"    column="RESUME"    />
+        <result property="familyData"    column="FAMILY_DATA"    />
+        <result property="COMMENT"    column="COMMENT"    />
+        <result property="createdBy"    column="CREATED_BY"    />
+        <result property="createdTime"    column="CREATED_TIME"    />
+        <result property="updatedBy"    column="UPDATED_BY"    />
+        <result property="updatedTime"    column="UPDATED_TIME"    />
+    </resultMap>
+
+    <sql id="selectHrmsResourcesFilesVo">
+        select ID, ONE_JJGOU, TWO_JJGOU, THREE_JJGOU, ZWFL, ZWMC, ZC, NAME, SEX, EMAIL, PHONE, QQ, MOBILE_PHONE, ADDRESS, POSTCODE, NATIONALITY, BIRTH_PLACE, BIRTHDAY, NATION, RELIGIOUS, POLITICAL, ID_NUMBER, SHBZM, AGE, EDUCATION, EDUCATION_YEAR, PROFESSIONAL, SALARY_STANDARD, OPEN_BANK, ACCOUNT, SPECIALITY, HOBBY, RESUME, FAMILY_DATA, COMMENT, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME from hrms_resources_files
+    </sql>
+
+    <select id="selectHrmsResourcesFilesList" parameterType="HrmsResourcesFiles" resultMap="HrmsResourcesFilesResult">
+        <include refid="selectHrmsResourcesFilesVo"/>
+        <where>  
+            <if test="oneJjgou != null  and oneJjgou != ''"> and ONE_JJGOU = #{oneJjgou}</if>
+            <if test="twoJjgou != null  and twoJjgou != ''"> and TWO_JJGOU = #{twoJjgou}</if>
+            <if test="threeJjgou != null  and threeJjgou != ''"> and THREE_JJGOU = #{threeJjgou}</if>
+            <if test="ZWFL != null  and ZWFL != ''"> and ZWFL = #{ZWFL}</if>
+            <if test="ZWMC != null  and ZWMC != ''"> and ZWMC = #{ZWMC}</if>
+            <if test="ZC != null  and ZC != ''"> and ZC = #{ZC}</if>
+            <if test="NAME != null  and NAME != ''"> and NAME like concat('%', #{NAME}, '%')</if>
+            <if test="SEX != null  and SEX != ''"> and SEX = #{SEX}</if>
+            <if test="EMAIL != null  and EMAIL != ''"> and EMAIL = #{EMAIL}</if>
+            <if test="PHONE != null  and PHONE != ''"> and PHONE = #{PHONE}</if>
+            <if test="QQ != null  and QQ != ''"> and QQ = #{QQ}</if>
+            <if test="mobilePhone != null  and mobilePhone != ''"> and MOBILE_PHONE = #{mobilePhone}</if>
+            <if test="ADDRESS != null  and ADDRESS != ''"> and ADDRESS = #{ADDRESS}</if>
+            <if test="POSTCODE != null  and POSTCODE != ''"> and POSTCODE = #{POSTCODE}</if>
+            <if test="NATIONALITY != null  and NATIONALITY != ''"> and NATIONALITY = #{NATIONALITY}</if>
+            <if test="birthPlace != null  and birthPlace != ''"> and BIRTH_PLACE = #{birthPlace}</if>
+            <if test="BIRTHDAY != null "> and BIRTHDAY = #{BIRTHDAY}</if>
+            <if test="NATION != null  and NATION != ''"> and NATION = #{NATION}</if>
+            <if test="RELIGIOUS != null  and RELIGIOUS != ''"> and RELIGIOUS = #{RELIGIOUS}</if>
+            <if test="POLITICAL != null  and POLITICAL != ''"> and POLITICAL = #{POLITICAL}</if>
+            <if test="idNumber != null  and idNumber != ''"> and ID_NUMBER = #{idNumber}</if>
+            <if test="SHBZM != null  and SHBZM != ''"> and SHBZM = #{SHBZM}</if>
+            <if test="AGE != null "> and AGE = #{AGE}</if>
+            <if test="EDUCATION != null  and EDUCATION != ''"> and EDUCATION = #{EDUCATION}</if>
+            <if test="educationYear != null  and educationYear != ''"> and EDUCATION_YEAR = #{educationYear}</if>
+            <if test="PROFESSIONAL != null  and PROFESSIONAL != ''"> and PROFESSIONAL = #{PROFESSIONAL}</if>
+            <if test="salaryStandard != null  and salaryStandard != ''"> and SALARY_STANDARD = #{salaryStandard}</if>
+            <if test="openBank != null  and openBank != ''"> and OPEN_BANK = #{openBank}</if>
+            <if test="ACCOUNT != null  and ACCOUNT != ''"> and ACCOUNT = #{ACCOUNT}</if>
+            <if test="SPECIALITY != null  and SPECIALITY != ''"> and SPECIALITY = #{SPECIALITY}</if>
+            <if test="HOBBY != null  and HOBBY != ''"> and HOBBY = #{HOBBY}</if>
+            <if test="RESUME != null  and RESUME != ''"> and RESUME = #{RESUME}</if>
+            <if test="familyData != null  and familyData != ''"> and FAMILY_DATA = #{familyData}</if>
+            <if test="COMMENT != null  and COMMENT != ''"> and COMMENT = #{COMMENT}</if>
+            <if test="createdBy != null  and createdBy != ''"> and CREATED_BY = #{createdBy}</if>
+            <if test="createdTime != null "> and CREATED_TIME = #{createdTime}</if>
+            <if test="updatedBy != null  and updatedBy != ''"> and UPDATED_BY = #{updatedBy}</if>
+            <if test="updatedTime != null "> and UPDATED_TIME = #{updatedTime}</if>
+        </where>
+    </select>
+    
+    <select id="selectHrmsResourcesFilesByID" parameterType="String" resultMap="HrmsResourcesFilesResult">
+        <include refid="selectHrmsResourcesFilesVo"/>
+        where ID = #{ID}
+    </select>
+        
+    <insert id="insertHrmsResourcesFiles" parameterType="HrmsResourcesFiles">
+        insert into hrms_resources_files
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ID != null">ID,</if>
+            <if test="oneJjgou != null">ONE_JJGOU,</if>
+            <if test="twoJjgou != null">TWO_JJGOU,</if>
+            <if test="threeJjgou != null">THREE_JJGOU,</if>
+            <if test="ZWFL != null">ZWFL,</if>
+            <if test="ZWMC != null">ZWMC,</if>
+            <if test="ZC != null">ZC,</if>
+            <if test="NAME != null">NAME,</if>
+            <if test="SEX != null">SEX,</if>
+            <if test="EMAIL != null">EMAIL,</if>
+            <if test="PHONE != null">PHONE,</if>
+            <if test="QQ != null">QQ,</if>
+            <if test="mobilePhone != null">MOBILE_PHONE,</if>
+            <if test="ADDRESS != null">ADDRESS,</if>
+            <if test="POSTCODE != null">POSTCODE,</if>
+            <if test="NATIONALITY != null">NATIONALITY,</if>
+            <if test="birthPlace != null">BIRTH_PLACE,</if>
+            <if test="BIRTHDAY != null">BIRTHDAY,</if>
+            <if test="NATION != null">NATION,</if>
+            <if test="RELIGIOUS != null">RELIGIOUS,</if>
+            <if test="POLITICAL != null">POLITICAL,</if>
+            <if test="idNumber != null">ID_NUMBER,</if>
+            <if test="SHBZM != null">SHBZM,</if>
+            <if test="AGE != null">AGE,</if>
+            <if test="EDUCATION != null">EDUCATION,</if>
+            <if test="educationYear != null">EDUCATION_YEAR,</if>
+            <if test="PROFESSIONAL != null">PROFESSIONAL,</if>
+            <if test="salaryStandard != null">SALARY_STANDARD,</if>
+            <if test="openBank != null">OPEN_BANK,</if>
+            <if test="ACCOUNT != null">ACCOUNT,</if>
+            <if test="SPECIALITY != null">SPECIALITY,</if>
+            <if test="HOBBY != null">HOBBY,</if>
+            <if test="RESUME != null">RESUME,</if>
+            <if test="familyData != null">FAMILY_DATA,</if>
+            <if test="COMMENT != null">COMMENT,</if>
+            <if test="createdBy != null">CREATED_BY,</if>
+            <if test="createdTime != null">CREATED_TIME,</if>
+            <if test="updatedBy != null">UPDATED_BY,</if>
+            <if test="updatedTime != null">UPDATED_TIME,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ID != null">#{ID},</if>
+            <if test="oneJjgou != null">#{oneJjgou},</if>
+            <if test="twoJjgou != null">#{twoJjgou},</if>
+            <if test="threeJjgou != null">#{threeJjgou},</if>
+            <if test="ZWFL != null">#{ZWFL},</if>
+            <if test="ZWMC != null">#{ZWMC},</if>
+            <if test="ZC != null">#{ZC},</if>
+            <if test="NAME != null">#{NAME},</if>
+            <if test="SEX != null">#{SEX},</if>
+            <if test="EMAIL != null">#{EMAIL},</if>
+            <if test="PHONE != null">#{PHONE},</if>
+            <if test="QQ != null">#{QQ},</if>
+            <if test="mobilePhone != null">#{mobilePhone},</if>
+            <if test="ADDRESS != null">#{ADDRESS},</if>
+            <if test="POSTCODE != null">#{POSTCODE},</if>
+            <if test="NATIONALITY != null">#{NATIONALITY},</if>
+            <if test="birthPlace != null">#{birthPlace},</if>
+            <if test="BIRTHDAY != null">#{BIRTHDAY},</if>
+            <if test="NATION != null">#{NATION},</if>
+            <if test="RELIGIOUS != null">#{RELIGIOUS},</if>
+            <if test="POLITICAL != null">#{POLITICAL},</if>
+            <if test="idNumber != null">#{idNumber},</if>
+            <if test="SHBZM != null">#{SHBZM},</if>
+            <if test="AGE != null">#{AGE},</if>
+            <if test="EDUCATION != null">#{EDUCATION},</if>
+            <if test="educationYear != null">#{educationYear},</if>
+            <if test="PROFESSIONAL != null">#{PROFESSIONAL},</if>
+            <if test="salaryStandard != null">#{salaryStandard},</if>
+            <if test="openBank != null">#{openBank},</if>
+            <if test="ACCOUNT != null">#{ACCOUNT},</if>
+            <if test="SPECIALITY != null">#{SPECIALITY},</if>
+            <if test="HOBBY != null">#{HOBBY},</if>
+            <if test="RESUME != null">#{RESUME},</if>
+            <if test="familyData != null">#{familyData},</if>
+            <if test="COMMENT != null">#{COMMENT},</if>
+            <if test="createdBy != null">#{createdBy},</if>
+            <if test="createdTime != null">#{createdTime},</if>
+            <if test="updatedBy != null">#{updatedBy},</if>
+            <if test="updatedTime != null">#{updatedTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateHrmsResourcesFiles" parameterType="HrmsResourcesFiles">
+        update hrms_resources_files
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="oneJjgou != null">ONE_JJGOU = #{oneJjgou},</if>
+            <if test="twoJjgou != null">TWO_JJGOU = #{twoJjgou},</if>
+            <if test="threeJjgou != null">THREE_JJGOU = #{threeJjgou},</if>
+            <if test="ZWFL != null">ZWFL = #{ZWFL},</if>
+            <if test="ZWMC != null">ZWMC = #{ZWMC},</if>
+            <if test="ZC != null">ZC = #{ZC},</if>
+            <if test="NAME != null">NAME = #{NAME},</if>
+            <if test="SEX != null">SEX = #{SEX},</if>
+            <if test="EMAIL != null">EMAIL = #{EMAIL},</if>
+            <if test="PHONE != null">PHONE = #{PHONE},</if>
+            <if test="QQ != null">QQ = #{QQ},</if>
+            <if test="mobilePhone != null">MOBILE_PHONE = #{mobilePhone},</if>
+            <if test="ADDRESS != null">ADDRESS = #{ADDRESS},</if>
+            <if test="POSTCODE != null">POSTCODE = #{POSTCODE},</if>
+            <if test="NATIONALITY != null">NATIONALITY = #{NATIONALITY},</if>
+            <if test="birthPlace != null">BIRTH_PLACE = #{birthPlace},</if>
+            <if test="BIRTHDAY != null">BIRTHDAY = #{BIRTHDAY},</if>
+            <if test="NATION != null">NATION = #{NATION},</if>
+            <if test="RELIGIOUS != null">RELIGIOUS = #{RELIGIOUS},</if>
+            <if test="POLITICAL != null">POLITICAL = #{POLITICAL},</if>
+            <if test="idNumber != null">ID_NUMBER = #{idNumber},</if>
+            <if test="SHBZM != null">SHBZM = #{SHBZM},</if>
+            <if test="AGE != null">AGE = #{AGE},</if>
+            <if test="EDUCATION != null">EDUCATION = #{EDUCATION},</if>
+            <if test="educationYear != null">EDUCATION_YEAR = #{educationYear},</if>
+            <if test="PROFESSIONAL != null">PROFESSIONAL = #{PROFESSIONAL},</if>
+            <if test="salaryStandard != null">SALARY_STANDARD = #{salaryStandard},</if>
+            <if test="openBank != null">OPEN_BANK = #{openBank},</if>
+            <if test="ACCOUNT != null">ACCOUNT = #{ACCOUNT},</if>
+            <if test="SPECIALITY != null">SPECIALITY = #{SPECIALITY},</if>
+            <if test="HOBBY != null">HOBBY = #{HOBBY},</if>
+            <if test="RESUME != null">RESUME = #{RESUME},</if>
+            <if test="familyData != null">FAMILY_DATA = #{familyData},</if>
+            <if test="COMMENT != null">COMMENT = #{COMMENT},</if>
+            <if test="createdBy != null">CREATED_BY = #{createdBy},</if>
+            <if test="createdTime != null">CREATED_TIME = #{createdTime},</if>
+            <if test="updatedBy != null">UPDATED_BY = #{updatedBy},</if>
+            <if test="updatedTime != null">UPDATED_TIME = #{updatedTime},</if>
+        </trim>
+        where ID = #{ID}
+    </update>
+
+    <delete id="deleteHrmsResourcesFilesByID" parameterType="String">
+        delete from hrms_resources_files where ID = #{ID}
+    </delete>
+
+    <delete id="deleteHrmsResourcesFilesByIDs" parameterType="String">
+        delete from hrms_resources_files where ID in 
+        <foreach item="ID" collection="array" open="(" separator="," close=")">
+            #{ID}
+        </foreach>
+    </delete>
+
+</mapper>
