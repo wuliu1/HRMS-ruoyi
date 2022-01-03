@@ -98,4 +98,14 @@ public class HrmsSalaryStandardServiceImpl implements IHrmsSalaryStandardService
     {
         return hrmsSalaryStandardMapper.deleteHrmsSalaryStandardByID(ID);
     }
+
+    @Override
+    public List<HrmsSalaryStandard> querySalaryPay() {
+        return null;
+    }
+
+    @Override
+    public List<HrmsSalaryStandard> querySalaryPayDetail(String param) {
+        return null;
+    }
 }

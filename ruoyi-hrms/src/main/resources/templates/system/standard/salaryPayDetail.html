@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <th:block th:include="include :: header('薪酬标准列表')"/>
+</head>
+<body class="gray-bg">
+<div class="container-div">
+    <div class="row">
+        <div class="col-sm-12 select-table table-striped">
+            <table id="bootstrap-table"></table>
+        </div>
+    </div>
+</div>
+<th:block th:include="include :: footer"/>
+<script th:inline="javascript">
+    var editFlag = [[${@permission.hasPermi('system:standard:edit')}]];
+    var removeFlag = [[${@permission.hasPermi('system:standard:remove')}]];
+    var prefix = ctx + "system/standard";
+
+    $(function () {
+        var options = {
+            url: prefix + "querySalaryPayDetail/list",
+            modalName: "薪酬标准",
+            columns: [{
+                checkbox: true
+            },
+                {
+                    field: 'id',
+                    title: '薪酬标准编号',
+                    visible: false
+                },
+                {
+                    field: 'name',
+                    title: '姓名'
+                },
+                {
+                    field: 'jbgz',
+                    title: '基本工资'
+                },
+                {
+                    field: 'jtbz',
+                    title: '交通补助'
+                },
+                {
+                    field: 'wcbz',
+                    title: '午餐补助'
+                },
+                {
+                    field: 'txbz',
+                    title: '通讯补助'
+                },
+                {
+                    field: 'ylaobx',
+                    title: '养老保险'
+                },
+                {
+                    field: 'sybx',
+                    title: '失业保险'
+                },
+                {
+                    field: 'yliaobx',
+                    title: '医疗保险'
+                },
+                {
+                    field: 'zfgjj',
+                    title: '住房公积金'
+                },
+                {
+                    field: 'totalAmount',
+                    title: '薪资总额'
+                }
+            ]
+        };
+        $.table.init(options);
+    });
+</script>
+</body>
+</html>

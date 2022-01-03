@@ -34,7 +34,6 @@ public class HrmsSalaryStandardController extends BaseController
     @Autowired
     private IHrmsSalaryStandardService hrmsSalaryStandardService;
 
-    @RequiresPermissions("system:standard:view")
     @GetMapping()
     public String standard()
     {
@@ -44,7 +43,6 @@ public class HrmsSalaryStandardController extends BaseController
     /**
      * 查询薪酬标准列表
      */
-    @RequiresPermissions("system:standard:list")
     @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(HrmsSalaryStandard hrmsSalaryStandard)
@@ -57,7 +55,6 @@ public class HrmsSalaryStandardController extends BaseController
     /**
      * 导出薪酬标准列表
      */
-    @RequiresPermissions("system:standard:export")
     @Log(title = "薪酬标准", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
@@ -80,7 +77,6 @@ public class HrmsSalaryStandardController extends BaseController
     /**
      * 新增保存薪酬标准
      */
-    @RequiresPermissions("system:standard:add")
     @Log(title = "薪酬标准", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
@@ -92,7 +88,6 @@ public class HrmsSalaryStandardController extends BaseController
     /**
      * 修改薪酬标准
      */
-    @RequiresPermissions("system:standard:edit")
     @GetMapping("/edit/{ID}")
     public String edit(@PathVariable("ID") String ID, ModelMap mmap)
     {
@@ -104,7 +99,6 @@ public class HrmsSalaryStandardController extends BaseController
     /**
      * 修改保存薪酬标准
      */
-    @RequiresPermissions("system:standard:edit")
     @Log(title = "薪酬标准", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
@@ -116,7 +110,6 @@ public class HrmsSalaryStandardController extends BaseController
     /**
      * 删除薪酬标准
      */
-    @RequiresPermissions("system:standard:remove")
     @Log(title = "薪酬标准", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody
@@ -124,4 +117,29 @@ public class HrmsSalaryStandardController extends BaseController
     {
         return toAjax(hrmsSalaryStandardService.deleteHrmsSalaryStandardByIDs(ids));
     }
+
+    /**
+     * 删除薪酬标准
+     */
+    @GetMapping( "/querySalaryPay")
+    public String  querySalaryPay()
+    {
+        startPage();
+        List<HrmsSalaryStandard> list = hrmsSalaryStandardService.querySalaryPay();
+        return prefix + "/salaryPay";
+    }
+
+    /**
+     * 删除薪酬标准
+     */
+    @GetMapping( "/querySalaryPayDetail")
+    public String querySalaryPayDetail(String param)
+    {
+        startPage();
+        List<HrmsSalaryStandard> list = hrmsSalaryStandardService.querySalaryPayDetail(param);
+        return prefix + "/salaryPayDetail";
+    }
+
+
+
 }
