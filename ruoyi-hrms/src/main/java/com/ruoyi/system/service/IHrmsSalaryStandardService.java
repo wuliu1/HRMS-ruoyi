@@ -62,4 +62,6 @@ public interface IHrmsSalaryStandardService
     public List<HrmsSalaryStandard> querySalaryPay();
 
     public List<HrmsSalaryStandard> querySalaryPayDetail(String param);
+
+    public List<HrmsSalaryStandard> querySalaryNameList();
 }

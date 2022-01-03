@@ -149,4 +149,10 @@ public class HrmsSalaryStandardServiceImpl implements IHrmsSalaryStandardService
         List<HrmsSalaryStandard> standardList = hrmsSalaryStandardMapper.querySalaryPayDetail(ids);
         return standardList;
     }
+
+    @Override
+    public List<HrmsSalaryStandard> querySalaryNameList() {
+        List<HrmsSalaryStandard> standardList = hrmsSalaryStandardMapper.querySalaryNameList();
+        return null;
+    }
 }

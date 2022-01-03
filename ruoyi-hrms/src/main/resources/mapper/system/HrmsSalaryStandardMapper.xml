@@ -186,4 +186,9 @@
         </foreach>
     </select>
 
+    <select id="querySalaryNameList" resultMap="HrmsSalaryStandardResult">
+        select distinct NAME
+        from hrms_salary_standard
+    </select>
+
 </mapper>

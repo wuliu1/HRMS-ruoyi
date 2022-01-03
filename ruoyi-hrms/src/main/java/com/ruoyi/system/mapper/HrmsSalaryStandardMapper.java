@@ -63,4 +63,6 @@ public interface HrmsSalaryStandardMapper
     List<HrmsSalaryStandard> querySalaryPay();
 
     List<HrmsSalaryStandard> querySalaryPayDetail(String[] IDs);
+
+    List<HrmsSalaryStandard> querySalaryNameList();
 }

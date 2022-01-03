@@ -11,7 +11,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">一级机构：</label>
             <div class="col-sm-4">
-                <select id="oneJjgou" name="target" class="form-control m-b" th:with="type=${@dict.getType('sys_yijijigou')}">
+                <select id="oneJjgou" name="oneJjgou" class="form-control m-b" th:with="type=${@dict.getType('sys_yijijigou')}">
                     <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
                             th:value="${dict.dictValue}"></option>
                 </select>
@@ -19,7 +19,7 @@
 
             <label class="col-sm-2 control-label">二级机构：</label>
             <div class="col-sm-4">
-                <select id="twoJjgou" name="target" class="form-control m-b" th:with="type=${@dict.getType('sys_erjijigou')}">
+                <select id="twoJjgou" name="twoJjgou" class="form-control m-b" th:with="type=${@dict.getType('sys_erjijigou')}">
                     <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
                             th:value="${dict.dictValue}"></option>
                 </select>
@@ -29,7 +29,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">三级机构：</label>
             <div class="col-sm-4">
-                <select id="threeJjgou" name="target" class="form-control m-b" th:with="type=${@dict.getType('sys_sanjijigou')}">
+                <select id="threeJjgou" name="threeJjgou" class="form-control m-b" th:with="type=${@dict.getType('sys_sanjijigou')}">
                     <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
                             th:value="${dict.dictValue}"></option>
                 </select>
@@ -50,7 +50,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">职称：</label>
             <div class="col-sm-4">
-                <select id="ZC" name="target" class="form-control m-b" th:with="type=${@dict.getType('sys_job_name')}">
+                <select id="ZC" name="ZC" class="form-control m-b" th:with="type=${@dict.getType('sys_job_name')}">
                     <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
                             th:value="${dict.dictValue}"></option>
                 </select>
@@ -62,6 +62,7 @@
             <div class="col-sm-4">
                 <input name="NAME" class="form-control" type="text">
             </div>
+
             <label class="col-sm-2 control-label">性别：</label>
             <div class="col-sm-4">
                 <select id="SEX" name="target" class="form-control m-b">
@@ -76,6 +77,7 @@
             <div class="col-sm-4">
                 <input name="EMAIL" class="form-control" type="text">
             </div>
+
             <label class="col-sm-2 control-label">电话：</label>
             <div class="col-sm-4">
                 <input name="PHONE" class="form-control" type="text">
@@ -87,6 +89,7 @@
             <div class="col-sm-4">
                 <input name="QQ" class="form-control" type="text">
             </div>
+
             <label class="col-sm-2 control-label">手机：</label>
             <div class="col-sm-4">
                 <input name="mobilePhone" class="form-control" type="text">
@@ -108,7 +111,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">国籍：</label>
             <div class="col-sm-4">
-                <select id="NATIONALITY" name="target" class="form-control m-b">
+                <select id="NATIONALITY" name="NATIONALITY" class="form-control m-b">
                     <option value="中国">中国</option>
                     <option value="英国">英国</option>
                 </select>
@@ -129,7 +132,7 @@
             </div>
             <label class="col-sm-2 control-label">民族：</label>
             <div class="col-sm-4">
-                <select id="NATION" name="target" class="form-control m-b">
+                <select id="NATION" name="NATION" class="form-control m-b">
                     <option value="汉族">汉族</option>
                     <option value="苗族">苗族</option>
                 </select>
@@ -139,14 +142,14 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">宗教信仰：</label>
             <div class="col-sm-4">
-                <select id="RELIGIOUS" name="target" class="form-control m-b">
+                <select id="RELIGIOUS" name="RELIGIOUS" class="form-control m-b">
                     <option value="无">无</option>
                     <option value="耶稣教">耶稣教</option>
                 </select>
             </div>
             <label class="col-sm-2 control-label">政治面貌：</label>
             <div class="col-sm-4">
-                <select id="POLITICAL" name="target" class="form-control m-b">
+                <select id="POLITICAL" name="POLITICAL" class="form-control m-b">
                     <option value="无">无</option>
                     <option value="共青团员">共青团员</option>
                     <option value="党员">党员</option>
@@ -172,7 +175,7 @@
             </div>
             <label class="col-sm-2 control-label">学历：</label>
             <div class="col-sm-4">
-                <select id="EDUCATION" name="target" class="form-control m-b">
+                <select id="EDUCATION" name="EDUCATION" class="form-control m-b">
                     <option value="本科">本科</option>
                     <option value="硕士">硕士</option>
                     <option value="大专">大专</option>
@@ -187,7 +190,7 @@
             </div>
             <label class="col-sm-2 control-label">学历专业：</label>
             <div class="col-sm-4">
-                <select id="PROFESSIONAL" name="target" class="form-control m-b">
+                <select id="PROFESSIONAL" name="PROFESSIONAL" class="form-control m-b">
                     <option value="计算机">计算机</option>
                     <option value="工商管理">工商管理</option>
                     <option value="商务英语">商务英语</option>

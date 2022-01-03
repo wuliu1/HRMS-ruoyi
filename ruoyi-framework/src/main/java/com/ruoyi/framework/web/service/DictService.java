@@ -1,6 +1,12 @@
 package com.ruoyi.framework.web.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import com.ruoyi.system.domain.HrmsSalaryStandard;
+import com.ruoyi.system.service.IHrmsSalaryStandardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.common.core.domain.entity.SysDictData;
@@ -20,6 +26,9 @@ public class DictService
 
     @Autowired
     private ISysDictDataService dictDataService;
+
+    @Autowired
+    private IHrmsSalaryStandardService hrmsSalaryStandardService;
 
     /**
      * 根据字典类型查询字典数据信息
