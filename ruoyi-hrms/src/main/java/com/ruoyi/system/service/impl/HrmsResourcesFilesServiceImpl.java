@@ -1,6 +1,9 @@
 package com.ruoyi.system.service.impl;
 
 import java.util.List;
+import java.util.UUID;
+
+import com.ruoyi.common.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.system.mapper.HrmsResourcesFilesMapper;
@@ -53,6 +56,10 @@ public class HrmsResourcesFilesServiceImpl implements IHrmsResourcesFilesService
     @Override
     public int insertHrmsResourcesFiles(HrmsResourcesFiles hrmsResourcesFiles)
     {
+        if (StringUtils.isEmpty(hrmsResourcesFiles.getID())){
+            String id = UUID.randomUUID().toString().replace("-", "");
+            hrmsResourcesFiles.setID(id);
+        }
         return hrmsResourcesFilesMapper.insertHrmsResourcesFiles(hrmsResourcesFiles);
     }
 
