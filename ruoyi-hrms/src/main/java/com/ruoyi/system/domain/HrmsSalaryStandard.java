@@ -75,6 +75,10 @@ public class HrmsSalaryStandard extends BaseEntity
     @Excel(name = "更新时间", width = 30, dateFormat = "yyyy-MM-dd")
     private Date updatedTime;
 
+    /** 薪资总额 */
+    @Excel(name = "薪资总额")
+    private BigDecimal totalAmount;
+
     public void setID(String ID) 
     {
         this.ID = ID;
@@ -201,6 +205,15 @@ public class HrmsSalaryStandard extends BaseEntity
     {
         return updatedTime;
     }
+    public void setTotalAmount(BigDecimal totalAmount) 
+    {
+        this.totalAmount = totalAmount;
+    }
+
+    public BigDecimal getTotalAmount() 
+    {
+        return totalAmount;
+    }
 
     @Override
     public String toString() {
@@ -219,6 +232,7 @@ public class HrmsSalaryStandard extends BaseEntity
             .append("createdTime", getCreatedTime())
             .append("updatedBy", getUpdatedBy())
             .append("updatedTime", getUpdatedTime())
+            .append("totalAmount", getTotalAmount())
             .toString();
     }
 }

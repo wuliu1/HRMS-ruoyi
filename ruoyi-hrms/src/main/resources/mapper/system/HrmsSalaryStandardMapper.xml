@@ -19,10 +19,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="createdTime"    column="CREATED_TIME"    />
         <result property="updatedBy"    column="UPDATED_BY"    />
         <result property="updatedTime"    column="UPDATED_TIME"    />
+        <result property="totalAmount"    column="TOTAL_AMOUNT"    />
     </resultMap>
 
     <sql id="selectHrmsSalaryStandardVo">
-        select ID, NAME, JBGZ, JTBZ, WCBZ, TXBZ, YLAOBX, SYBX, YLIAOBX, ZFGJJ, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME from hrms_salary_standard
+        select ID, NAME, JBGZ, JTBZ, WCBZ, TXBZ, YLAOBX, SYBX, YLIAOBX, ZFGJJ, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME, TOTAL_AMOUNT from hrms_salary_standard
     </sql>
 
     <select id="selectHrmsSalaryStandardList" parameterType="HrmsSalaryStandard" resultMap="HrmsSalaryStandardResult">
@@ -41,6 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="createdTime != null "> and CREATED_TIME = #{createdTime}</if>
             <if test="updatedBy != null  and updatedBy != ''"> and UPDATED_BY = #{updatedBy}</if>
             <if test="updatedTime != null "> and UPDATED_TIME = #{updatedTime}</if>
+            <if test="totalAmount != null "> and TOTAL_AMOUNT = #{totalAmount}</if>
         </where>
     </select>
     
@@ -66,6 +68,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="createdTime != null">CREATED_TIME,</if>
             <if test="updatedBy != null">UPDATED_BY,</if>
             <if test="updatedTime != null">UPDATED_TIME,</if>
+            <if test="totalAmount != null">TOTAL_AMOUNT,</if>
          </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="ID != null">#{ID},</if>
@@ -82,6 +85,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="createdTime != null">#{createdTime},</if>
             <if test="updatedBy != null">#{updatedBy},</if>
             <if test="updatedTime != null">#{updatedTime},</if>
+            <if test="totalAmount != null">#{totalAmount},</if>
          </trim>
     </insert>
 
@@ -101,6 +105,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="createdTime != null">CREATED_TIME = #{createdTime},</if>
             <if test="updatedBy != null">UPDATED_BY = #{updatedBy},</if>
             <if test="updatedTime != null">UPDATED_TIME = #{updatedTime},</if>
+            <if test="totalAmount != null">TOTAL_AMOUNT = #{totalAmount},</if>
         </trim>
         where ID = #{ID}
     </update>
