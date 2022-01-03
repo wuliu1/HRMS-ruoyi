@@ -11,21 +11,21 @@
                 <div class="select-list">
                     <ul>
                         <li>
-                            一级机构：<select name="status" th:with="type=${@dict.getType('sys_normal_disable')}">
+                            一级机构：<select name="status" th:with="type=${@dict.getType('sys_yijijigou')}">
                             <option value="">所有</option>
                             <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
                                     th:value="${dict.dictValue}"></option>
                         </select>
                         </li>
                         <li>
-                            二级机构：<select name="status" th:with="type=${@dict.getType('sys_normal_disable')}">
+                            二级机构：<select name="status" th:with="type=${@dict.getType('sys_erjijigou')}">
                             <option value="">所有</option>
                             <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
                                     th:value="${dict.dictValue}"></option>
                         </select>
                         </li>
                         <li>
-                            三级机构：<select name="status" th:with="type=${@dict.getType('sys_normal_disable')}">
+                            三级机构：<select name="status" th:with="type=${@dict.getType('sys_sanjijigou')}">
                             <option value="">所有</option>
                             <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
                                     th:value="${dict.dictValue}"></option>

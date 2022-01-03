@@ -11,17 +11,17 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">一级机构：</label>
             <div class="col-sm-4">
-                <select id="oneJjgou" name="target" class="form-control m-b">
-                    <option value="menuItem">页签</option>
-                    <option value="menuBlank">新窗口</option>
+                <select id="oneJjgou" name="target" class="form-control m-b" th:with="type=${@dict.getType('sys_yijijigou')}">
+                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
+                            th:value="${dict.dictValue}"></option>
                 </select>
             </div>
 
             <label class="col-sm-2 control-label">二级机构：</label>
             <div class="col-sm-4">
-                <select id="twoJjgou" name="target" class="form-control m-b">
-                    <option value="menuItem">页签</option>
-                    <option value="menuBlank">新窗口</option>
+                <select id="twoJjgou" name="target" class="form-control m-b" th:with="type=${@dict.getType('sys_erjijigou')}">
+                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
+                            th:value="${dict.dictValue}"></option>
                 </select>
             </div>
         </div>
@@ -29,9 +29,9 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">三级机构：</label>
             <div class="col-sm-4">
-                <select id="threeJjgou" name="target" class="form-control m-b">
-                    <option value="menuItem">页签</option>
-                    <option value="menuBlank">新窗口</option>
+                <select id="threeJjgou" name="target" class="form-control m-b" th:with="type=${@dict.getType('sys_sanjijigou')}">
+                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
+                            th:value="${dict.dictValue}"></option>
                 </select>
             </div>
         </div>
@@ -50,9 +50,9 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">职称：</label>
             <div class="col-sm-4">
-                <select id="ZC" name="target" class="form-control m-b">
-                    <option value="menuItem">页签</option>
-                    <option value="menuBlank">新窗口</option>
+                <select id="ZC" name="target" class="form-control m-b" th:with="type=${@dict.getType('sys_job_name')}">
+                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
+                            th:value="${dict.dictValue}"></option>
                 </select>
             </div>
         </div>
