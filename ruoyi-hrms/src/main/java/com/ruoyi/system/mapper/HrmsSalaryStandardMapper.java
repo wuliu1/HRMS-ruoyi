@@ -58,4 +58,9 @@ public interface HrmsSalaryStandardMapper
      * @return 结果
      */
     public int deleteHrmsSalaryStandardByIDs(String[] IDs);
+
+
+    List<HrmsSalaryStandard> querySalaryPay();
+
+    List<HrmsSalaryStandard> querySalaryPayDetail(String[] IDs);
 }

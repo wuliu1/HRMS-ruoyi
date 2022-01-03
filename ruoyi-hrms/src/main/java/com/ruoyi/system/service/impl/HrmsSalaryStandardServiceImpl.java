@@ -1,7 +1,11 @@
 package com.ruoyi.system.service.impl;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import com.ruoyi.common.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,11 +105,48 @@ public class HrmsSalaryStandardServiceImpl implements IHrmsSalaryStandardService
 
     @Override
     public List<HrmsSalaryStandard> querySalaryPay() {
-        return null;
+        List<HrmsSalaryStandard> list = hrmsSalaryStandardMapper.querySalaryPay();
+        Map<String, List<HrmsSalaryStandard>> listMap = list.stream().collect(Collectors.groupingBy(HrmsSalaryStandard::getThreeJjgou));
+        list.clear();
+        int number;
+        int i = 0;
+        for (String s : listMap.keySet()) {
+            ++i;
+            HrmsSalaryStandard standard = new HrmsSalaryStandard();
+            List<HrmsSalaryStandard> standardList = listMap.get(s);
+            number = standardList.size();
+            String oneJjgou = "";
+            String twoJjgou = "";
+            String threeJjgou = "";
+            String index = "XCFFD20220123";
+            StringBuilder id = new StringBuilder();
+            double totalAmount = 0;
+            for (HrmsSalaryStandard hrmsSalaryStandard : standardList) {
+                totalAmount += hrmsSalaryStandard.getTotalAmount().doubleValue();
+                oneJjgou = hrmsSalaryStandard.getOneJjgou();
+                twoJjgou = hrmsSalaryStandard.getTwoJjgou();
+                threeJjgou = hrmsSalaryStandard.getThreeJjgou();
+                id.append(",").append(hrmsSalaryStandard.getID());
+            }
+            standard.setNumber(number);
+            standard.setOneJjgou(oneJjgou);
+            standard.setTwoJjgou(twoJjgou);
+            standard.setThreeJjgou(threeJjgou);
+            standard.setTotalAmount(BigDecimal.valueOf(totalAmount));
+            standard.setID(id.toString());
+            standard.setIndex(index+i);
+            list.add(standard);
+        }
+        return list;
     }
 
     @Override
     public List<HrmsSalaryStandard> querySalaryPayDetail(String param) {
-        return null;
+        if (param == null) {
+            return new ArrayList<HrmsSalaryStandard>();
+        }
+        String[] ids = param.split(",");
+        List<HrmsSalaryStandard> standardList = hrmsSalaryStandardMapper.querySalaryPayDetail(ids);
+        return standardList;
     }
 }

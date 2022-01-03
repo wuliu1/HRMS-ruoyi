@@ -79,7 +79,115 @@ public class HrmsSalaryStandard extends BaseEntity
     @Excel(name = "薪资总额")
     private BigDecimal totalAmount;
 
-    public void setID(String ID) 
+    /** 一级机构 */
+    @Excel(name = "一级机构")
+    private String oneJjgou;
+
+    /** 二级机构 */
+    @Excel(name = "二级机构")
+    private String twoJjgou;
+
+    /** 三级机构 */
+    @Excel(name = "三级机构")
+    private String threeJjgou;
+
+    /** 职位分类 */
+    @Excel(name = "职位分类")
+    private String ZWFL;
+
+    /** 职位名称 */
+    @Excel(name = "职位名称")
+    private String ZWMC;
+
+    /** 职称 */
+    @Excel(name = "职称")
+    private String ZC;
+
+    /** 姓名 */
+    @Excel(name = "姓名")
+    private String pNAME;
+
+    private String index;
+
+    public String getIndex() {
+        return index;
+    }
+
+    public void setIndex(String index) {
+        this.index = index;
+    }
+
+    private Integer number;
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
+    public String getpNAME() {
+        return pNAME;
+    }
+
+    public void setpNAME(String pNAME) {
+        this.pNAME = pNAME;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getOneJjgou() {
+        return oneJjgou;
+    }
+
+    public void setOneJjgou(String oneJjgou) {
+        this.oneJjgou = oneJjgou;
+    }
+
+    public String getTwoJjgou() {
+        return twoJjgou;
+    }
+
+    public void setTwoJjgou(String twoJjgou) {
+        this.twoJjgou = twoJjgou;
+    }
+
+    public String getThreeJjgou() {
+        return threeJjgou;
+    }
+
+    public void setThreeJjgou(String threeJjgou) {
+        this.threeJjgou = threeJjgou;
+    }
+
+    public String getZWFL() {
+        return ZWFL;
+    }
+
+    public void setZWFL(String ZWFL) {
+        this.ZWFL = ZWFL;
+    }
+
+    public String getZWMC() {
+        return ZWMC;
+    }
+
+    public void setZWMC(String ZWMC) {
+        this.ZWMC = ZWMC;
+    }
+
+    public String getZC() {
+        return ZC;
+    }
+
+    public void setZC(String ZC) {
+        this.ZC = ZC;
+    }
+
+    public void setID(String ID)
     {
         this.ID = ID;
     }

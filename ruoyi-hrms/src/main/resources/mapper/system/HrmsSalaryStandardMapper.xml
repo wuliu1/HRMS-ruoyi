@@ -1,56 +1,78 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ruoyi.system.mapper.HrmsSalaryStandardMapper">
-    
+
     <resultMap type="HrmsSalaryStandard" id="HrmsSalaryStandardResult">
-        <result property="ID"    column="ID"    />
-        <result property="NAME"    column="NAME"    />
-        <result property="JBGZ"    column="JBGZ"    />
-        <result property="JTBZ"    column="JTBZ"    />
-        <result property="WCBZ"    column="WCBZ"    />
-        <result property="TXBZ"    column="TXBZ"    />
-        <result property="YLAOBX"    column="YLAOBX"    />
-        <result property="SYBX"    column="SYBX"    />
-        <result property="YLIAOBX"    column="YLIAOBX"    />
-        <result property="ZFGJJ"    column="ZFGJJ"    />
-        <result property="createdBy"    column="CREATED_BY"    />
-        <result property="createdTime"    column="CREATED_TIME"    />
-        <result property="updatedBy"    column="UPDATED_BY"    />
-        <result property="updatedTime"    column="UPDATED_TIME"    />
-        <result property="totalAmount"    column="TOTAL_AMOUNT"    />
+        <result property="ID" column="ID"/>
+        <result property="NAME" column="NAME"/>
+        <result property="JBGZ" column="JBGZ"/>
+        <result property="JTBZ" column="JTBZ"/>
+        <result property="WCBZ" column="WCBZ"/>
+        <result property="TXBZ" column="TXBZ"/>
+        <result property="YLAOBX" column="YLAOBX"/>
+        <result property="SYBX" column="SYBX"/>
+        <result property="YLIAOBX" column="YLIAOBX"/>
+        <result property="ZFGJJ" column="ZFGJJ"/>
+        <result property="createdBy" column="CREATED_BY"/>
+        <result property="createdTime" column="CREATED_TIME"/>
+        <result property="updatedBy" column="UPDATED_BY"/>
+        <result property="updatedTime" column="UPDATED_TIME"/>
+        <result property="totalAmount" column="TOTAL_AMOUNT"/>
+        <result property="oneJjgou" column="ONE_JJGOU"/>
+        <result property="twoJjgou" column="TWO_JJGOU"/>
+        <result property="threeJjgou" column="THREE_JJGOU"/>
+        <result property="ZWFL" column="ZWFL"/>
+        <result property="ZWMC" column="ZWMC"/>
+        <result property="ZC" column="ZC"/>
+        <result property="NAME" column="NAME"/>
     </resultMap>
 
     <sql id="selectHrmsSalaryStandardVo">
-        select ID, NAME, JBGZ, JTBZ, WCBZ, TXBZ, YLAOBX, SYBX, YLIAOBX, ZFGJJ, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME, TOTAL_AMOUNT from hrms_salary_standard
+        select ID,
+               NAME,
+               JBGZ,
+               JTBZ,
+               WCBZ,
+               TXBZ,
+               YLAOBX,
+               SYBX,
+               YLIAOBX,
+               ZFGJJ,
+               CREATED_BY,
+               CREATED_TIME,
+               UPDATED_BY,
+               UPDATED_TIME,
+               TOTAL_AMOUNT
+        from hrms_salary_standard
     </sql>
 
     <select id="selectHrmsSalaryStandardList" parameterType="HrmsSalaryStandard" resultMap="HrmsSalaryStandardResult">
         <include refid="selectHrmsSalaryStandardVo"/>
-        <where>  
-            <if test="NAME != null  and NAME != ''"> and NAME like concat('%', #{NAME}, '%')</if>
-            <if test="JBGZ != null "> and JBGZ = #{JBGZ}</if>
-            <if test="JTBZ != null "> and JTBZ = #{JTBZ}</if>
-            <if test="WCBZ != null "> and WCBZ = #{WCBZ}</if>
-            <if test="TXBZ != null "> and TXBZ = #{TXBZ}</if>
-            <if test="YLAOBX != null "> and YLAOBX = #{YLAOBX}</if>
-            <if test="SYBX != null "> and SYBX = #{SYBX}</if>
-            <if test="YLIAOBX != null "> and YLIAOBX = #{YLIAOBX}</if>
-            <if test="ZFGJJ != null "> and ZFGJJ = #{ZFGJJ}</if>
-            <if test="createdBy != null  and createdBy != ''"> and CREATED_BY = #{createdBy}</if>
-            <if test="createdTime != null "> and CREATED_TIME = #{createdTime}</if>
-            <if test="updatedBy != null  and updatedBy != ''"> and UPDATED_BY = #{updatedBy}</if>
-            <if test="updatedTime != null "> and UPDATED_TIME = #{updatedTime}</if>
-            <if test="totalAmount != null "> and TOTAL_AMOUNT = #{totalAmount}</if>
+        <where>
+            <if test="NAME != null  and NAME != ''">and NAME like concat('%', #{NAME}, '%')</if>
+            <if test="JBGZ != null ">and JBGZ = #{JBGZ}</if>
+            <if test="JTBZ != null ">and JTBZ = #{JTBZ}</if>
+            <if test="WCBZ != null ">and WCBZ = #{WCBZ}</if>
+            <if test="TXBZ != null ">and TXBZ = #{TXBZ}</if>
+            <if test="YLAOBX != null ">and YLAOBX = #{YLAOBX}</if>
+            <if test="SYBX != null ">and SYBX = #{SYBX}</if>
+            <if test="YLIAOBX != null ">and YLIAOBX = #{YLIAOBX}</if>
+            <if test="ZFGJJ != null ">and ZFGJJ = #{ZFGJJ}</if>
+            <if test="createdBy != null  and createdBy != ''">and CREATED_BY = #{createdBy}</if>
+            <if test="createdTime != null ">and CREATED_TIME = #{createdTime}</if>
+            <if test="updatedBy != null  and updatedBy != ''">and UPDATED_BY = #{updatedBy}</if>
+            <if test="updatedTime != null ">and UPDATED_TIME = #{updatedTime}</if>
+            <if test="totalAmount != null ">and TOTAL_AMOUNT = #{totalAmount}</if>
         </where>
     </select>
-    
+
     <select id="selectHrmsSalaryStandardByID" parameterType="String" resultMap="HrmsSalaryStandardResult">
         <include refid="selectHrmsSalaryStandardVo"/>
         where ID = #{ID}
     </select>
-        
+
     <insert id="insertHrmsSalaryStandard" parameterType="HrmsSalaryStandard">
         insert into hrms_salary_standard
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -69,7 +91,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updatedBy != null">UPDATED_BY,</if>
             <if test="updatedTime != null">UPDATED_TIME,</if>
             <if test="totalAmount != null">TOTAL_AMOUNT,</if>
-         </trim>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="ID != null">#{ID},</if>
             <if test="NAME != null">#{NAME},</if>
@@ -86,7 +108,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="updatedBy != null">#{updatedBy},</if>
             <if test="updatedTime != null">#{updatedTime},</if>
             <if test="totalAmount != null">#{totalAmount},</if>
-         </trim>
+        </trim>
     </insert>
 
     <update id="updateHrmsSalaryStandard" parameterType="HrmsSalaryStandard">
@@ -111,14 +133,57 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
 
     <delete id="deleteHrmsSalaryStandardByID" parameterType="String">
-        delete from hrms_salary_standard where ID = #{ID}
+        delete
+        from hrms_salary_standard
+        where ID = #{ID}
     </delete>
 
     <delete id="deleteHrmsSalaryStandardByIDs" parameterType="String">
-        delete from hrms_salary_standard where ID in 
+        delete from hrms_salary_standard where ID in
         <foreach item="ID" collection="array" open="(" separator="," close=")">
             #{ID}
         </foreach>
     </delete>
+
+    <select id="querySalaryPay" resultMap="HrmsSalaryStandardResult">
+        select ONE_JJGOU,
+               TWO_JJGOU,
+               THREE_JJGOU,
+               ZWFL,
+               ZWMC,
+               ZC,
+               rf.NAME,
+               rf.ID,
+               st.NAME,
+               JBGZ,
+               JTBZ,
+               WCBZ,
+               TXBZ,
+               YLAOBX,
+               SYBX,
+               YLIAOBX,
+               ZFGJJ,
+               TOTAL_AMOUNT
+        from hrms_resources_files rf
+                 left join hrms_salary_standard st on st.NAME = rf.ZC
+    </select>
+
+    <select id="querySalaryPayDetail"  parameterType="String" resultMap="HrmsSalaryStandardResult">
+        select
+        hrf.NAME,
+        JBGZ,
+        JTBZ,
+        WCBZ,
+        TXBZ,
+        YLAOBX,
+        SYBX,
+        YLIAOBX,
+        ZFGJJ,
+        TOTAL_AMOUNT
+        from hrms_resources_files hrf , hrms_salary_standard hss where hss.NAME = hrf.ZC and hrf.ID in
+        <foreach item="ID" collection="array" open="(" separator="," close=")">
+            #{ID}
+        </foreach>
+    </select>
 
 </mapper>

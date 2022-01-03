@@ -5,6 +5,7 @@
 </head>
 <body class="gray-bg">
 <div class="container-div">
+    <input id="idValue" th:value="${id}" type="hidden" placeholder="任务名称" class="input input-sm form-control">
     <div class="row">
         <div class="col-sm-12 select-table table-striped">
             <table id="bootstrap-table"></table>
@@ -16,10 +17,13 @@
     var editFlag = [[${@permission.hasPermi('system:standard:edit')}]];
     var removeFlag = [[${@permission.hasPermi('system:standard:remove')}]];
     var prefix = ctx + "system/standard";
+    var param = $('#idValue').val();
+
 
     $(function () {
         var options = {
-            url: prefix + "querySalaryPayDetail/list",
+            url: prefix + "/querySalaryPayDetail/list/",
+            queryParams: {'param': param},
             modalName: "薪酬标准",
             columns: [{
                 checkbox: true

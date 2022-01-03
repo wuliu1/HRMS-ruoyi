@@ -124,22 +124,41 @@ public class HrmsSalaryStandardController extends BaseController
     @GetMapping( "/querySalaryPay")
     public String  querySalaryPay()
     {
+        return prefix + "/salaryPay";
+    }
+
+    /**
+     * 查询薪酬标准列表
+     */
+    @PostMapping("/querySalaryPay/list")
+    @ResponseBody
+    public TableDataInfo querySalaryPayList()
+    {
         startPage();
         List<HrmsSalaryStandard> list = hrmsSalaryStandardService.querySalaryPay();
-        return prefix + "/salaryPay";
+        return getDataTable(list);
     }
 
     /**
      * 删除薪酬标准
      */
-    @GetMapping( "/querySalaryPayDetail")
-    public String querySalaryPayDetail(String param)
+    @GetMapping( "/querySalaryPayDetail/{ID}")
+    public String querySalaryPayDetail(@PathVariable("ID") String ID, ModelMap mmap)
     {
-        startPage();
-        List<HrmsSalaryStandard> list = hrmsSalaryStandardService.querySalaryPayDetail(param);
+        mmap.put("id", ID);
         return prefix + "/salaryPayDetail";
     }
 
-
+    /**
+     * 查询薪酬标准列表
+     */
+    @PostMapping("/querySalaryPayDetail/list")
+    @ResponseBody
+    public TableDataInfo querySalaryPayDetailList(String param )
+    {
+        startPage();
+        List<HrmsSalaryStandard> list = hrmsSalaryStandardService.querySalaryPayDetail(param);
+        return getDataTable(list);
+    }
 
 }
