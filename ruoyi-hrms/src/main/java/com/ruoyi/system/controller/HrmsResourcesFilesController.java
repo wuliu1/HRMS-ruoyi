@@ -1,4 +1,4 @@
-package com.ruoyi.hrms.controller;
+package com.ruoyi.system.controller;
 
 import java.util.List;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.ruoyi.common.annotation.Log;
 import com.ruoyi.common.enums.BusinessType;
-import com.ruoyi.hrms.domain.HrmsResourcesFiles;
-import com.ruoyi.hrms.service.IHrmsResourcesFilesService;
+import com.ruoyi.system.domain.HrmsResourcesFiles;
+import com.ruoyi.system.service.IHrmsResourcesFilesService;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.utils.poi.ExcelUtil;
@@ -34,6 +34,7 @@ public class HrmsResourcesFilesController extends BaseController
     @Autowired
     private IHrmsResourcesFilesService hrmsResourcesFilesService;
 
+    @RequiresPermissions("system:files:view")
     @GetMapping()
     public String files()
     {
@@ -43,6 +44,7 @@ public class HrmsResourcesFilesController extends BaseController
     /**
      * 查询人力资源档案列表
      */
+    @RequiresPermissions("system:files:list")
     @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(HrmsResourcesFiles hrmsResourcesFiles)
@@ -55,6 +57,7 @@ public class HrmsResourcesFilesController extends BaseController
     /**
      * 导出人力资源档案列表
      */
+    @RequiresPermissions("system:files:export")
     @Log(title = "人力资源档案", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
@@ -77,6 +80,7 @@ public class HrmsResourcesFilesController extends BaseController
     /**
      * 新增保存人力资源档案
      */
+    @RequiresPermissions("system:files:add")
     @Log(title = "人力资源档案", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
@@ -88,6 +92,7 @@ public class HrmsResourcesFilesController extends BaseController
     /**
      * 修改人力资源档案
      */
+    @RequiresPermissions("system:files:edit")
     @GetMapping("/edit/{ID}")
     public String edit(@PathVariable("ID") String ID, ModelMap mmap)
     {
@@ -99,6 +104,7 @@ public class HrmsResourcesFilesController extends BaseController
     /**
      * 修改保存人力资源档案
      */
+    @RequiresPermissions("system:files:edit")
     @Log(title = "人力资源档案", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
@@ -110,6 +116,7 @@ public class HrmsResourcesFilesController extends BaseController
     /**
      * 删除人力资源档案
      */
+    @RequiresPermissions("system:files:remove")
     @Log(title = "人力资源档案", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody

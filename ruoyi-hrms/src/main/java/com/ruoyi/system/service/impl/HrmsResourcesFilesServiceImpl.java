@@ -1,11 +1,11 @@
-package com.ruoyi.hrms.service.impl;
+package com.ruoyi.system.service.impl;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.hrms.mapper.HrmsResourcesFilesMapper;
-import com.ruoyi.hrms.domain.HrmsResourcesFiles;
-import com.ruoyi.hrms.service.IHrmsResourcesFilesService;
+import com.ruoyi.system.mapper.HrmsResourcesFilesMapper;
+import com.ruoyi.system.domain.HrmsResourcesFiles;
+import com.ruoyi.system.service.IHrmsResourcesFilesService;
 import com.ruoyi.common.core.text.Convert;
 
 /**

@@ -1,4 +1,4 @@
-package com.ruoyi.hrms.controller;
+package com.ruoyi.system.controller;
 
 import java.util.List;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.ruoyi.common.annotation.Log;
 import com.ruoyi.common.enums.BusinessType;
-import com.ruoyi.hrms.domain.HrmsSalaryStandard;
-import com.ruoyi.hrms.service.IHrmsSalaryStandardService;
+import com.ruoyi.system.domain.HrmsSalaryStandard;
+import com.ruoyi.system.service.IHrmsSalaryStandardService;
 import com.ruoyi.common.core.controller.BaseController;
 import com.ruoyi.common.core.domain.AjaxResult;
 import com.ruoyi.common.utils.poi.ExcelUtil;
@@ -34,6 +34,7 @@ public class HrmsSalaryStandardController extends BaseController
     @Autowired
     private IHrmsSalaryStandardService hrmsSalaryStandardService;
 
+    @RequiresPermissions("system:standard:view")
     @GetMapping()
     public String standard()
     {
@@ -43,6 +44,7 @@ public class HrmsSalaryStandardController extends BaseController
     /**
      * 查询薪酬标准列表
      */
+    @RequiresPermissions("system:standard:list")
     @PostMapping("/list")
     @ResponseBody
     public TableDataInfo list(HrmsSalaryStandard hrmsSalaryStandard)
@@ -55,6 +57,7 @@ public class HrmsSalaryStandardController extends BaseController
     /**
      * 导出薪酬标准列表
      */
+    @RequiresPermissions("system:standard:export")
     @Log(title = "薪酬标准", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     @ResponseBody
@@ -77,6 +80,7 @@ public class HrmsSalaryStandardController extends BaseController
     /**
      * 新增保存薪酬标准
      */
+    @RequiresPermissions("system:standard:add")
     @Log(title = "薪酬标准", businessType = BusinessType.INSERT)
     @PostMapping("/add")
     @ResponseBody
@@ -88,6 +92,7 @@ public class HrmsSalaryStandardController extends BaseController
     /**
      * 修改薪酬标准
      */
+    @RequiresPermissions("system:standard:edit")
     @GetMapping("/edit/{ID}")
     public String edit(@PathVariable("ID") String ID, ModelMap mmap)
     {
@@ -99,6 +104,7 @@ public class HrmsSalaryStandardController extends BaseController
     /**
      * 修改保存薪酬标准
      */
+    @RequiresPermissions("system:standard:edit")
     @Log(title = "薪酬标准", businessType = BusinessType.UPDATE)
     @PostMapping("/edit")
     @ResponseBody
@@ -110,6 +116,7 @@ public class HrmsSalaryStandardController extends BaseController
     /**
      * 删除薪酬标准
      */
+    @RequiresPermissions("system:standard:remove")
     @Log(title = "薪酬标准", businessType = BusinessType.DELETE)
     @PostMapping( "/remove")
     @ResponseBody

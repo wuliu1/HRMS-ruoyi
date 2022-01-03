@@ -1,7 +1,7 @@
-package com.ruoyi.hrms.mapper;
+package com.ruoyi.system.mapper;
 
 import java.util.List;
-import com.ruoyi.hrms.domain.HrmsSalaryStandard;
+import com.ruoyi.system.domain.HrmsSalaryStandard;
 
 /**
  * 薪酬标准Mapper接口

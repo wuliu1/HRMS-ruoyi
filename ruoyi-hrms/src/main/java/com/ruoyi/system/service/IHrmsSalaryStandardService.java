@@ -1,7 +1,7 @@
-package com.ruoyi.hrms.service;
+package com.ruoyi.system.service;
 
 import java.util.List;
-import com.ruoyi.hrms.domain.HrmsSalaryStandard;
+import com.ruoyi.system.domain.HrmsSalaryStandard;
 
 /**
  * 薪酬标准Service接口

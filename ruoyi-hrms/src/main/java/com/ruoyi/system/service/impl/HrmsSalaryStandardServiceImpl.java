@@ -1,11 +1,11 @@
-package com.ruoyi.hrms.service.impl;
+package com.ruoyi.system.service.impl;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.hrms.mapper.HrmsSalaryStandardMapper;
-import com.ruoyi.hrms.domain.HrmsSalaryStandard;
-import com.ruoyi.hrms.service.IHrmsSalaryStandardService;
+import com.ruoyi.system.mapper.HrmsSalaryStandardMapper;
+import com.ruoyi.system.domain.HrmsSalaryStandard;
+import com.ruoyi.system.service.IHrmsSalaryStandardService;
 import com.ruoyi.common.core.text.Convert;
 
 /**
