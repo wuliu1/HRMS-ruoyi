@@ -11,7 +11,10 @@
             <div class="form-group">    
                 <label class="col-sm-3 control-label">薪酬标准名称：</label>
                 <div class="col-sm-8">
-                    <input name="NAME" th:field="*{NAME}" class="form-control" type="text">
+                    <select id="NAME" name="NAME" class="form-control m-b" th:with="type=${@dict.getType('sys_job_name')}">
+                        <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
+                                th:value="${dict.dictValue}"></option>
+                    </select>
                 </div>
             </div>
             <div class="form-group">    
@@ -78,7 +81,7 @@
                 <label class="col-sm-3 control-label">创建时间：</label>
                 <div class="col-sm-8">
                     <div class="input-group date">
-                        <input name="createdTime" th:value="${#dates.format(hrmsSalaryStandard.createdTime, 'yyyy-MM-dd')}" class="form-control" placeholder="yyyy-MM-dd" type="text">
+                        <input name="createdTime" th:value="${hrmsSalaryStandard.createdTime}" class="form-control" placeholder="yyyy-MM-dd" type="text">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                     </div>
                 </div>
@@ -86,14 +89,14 @@
             <div class="form-group">    
                 <label class="col-sm-3 control-label">更新人：</label>
                 <div class="col-sm-8">
-                    <input name="updatedBy" th:field="*{updatedBy}" class="form-control" type="text">
+                    <input name="updatedBy" th:value="${@permission.getPrincipalProperty('userName')}" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
                 <label class="col-sm-3 control-label">更新时间：</label>
                 <div class="col-sm-8">
                     <div class="input-group date">
-                        <input name="updatedTime" th:value="${#dates.format(hrmsSalaryStandard.updatedTime, 'yyyy-MM-dd')}" class="form-control" placeholder="yyyy-MM-dd" type="text">
+                        <input name="updatedTime" th:value="${hrmsSalaryStandard.updatedTime}" class="form-control" placeholder="yyyy-MM-dd" type="text">
                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                     </div>
                 </div>

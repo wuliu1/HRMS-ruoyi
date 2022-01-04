@@ -1,12 +1,10 @@
 package com.ruoyi.system.service.impl;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
+import com.ruoyi.common.utils.DateUtils;
 import com.ruoyi.common.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,9 +58,14 @@ public class HrmsSalaryStandardServiceImpl implements IHrmsSalaryStandardService
     @Override
     public int insertHrmsSalaryStandard(HrmsSalaryStandard hrmsSalaryStandard)
     {
+        String ID = "HRMS2022";
         if(StringUtils.isEmpty(hrmsSalaryStandard.getID())){
-            String id = UUID.randomUUID().toString().replace("-", "");
-            hrmsSalaryStandard.setID(id);
+            String id = UUID.randomUUID().toString().replace("-", "").hashCode()+"";
+            hrmsSalaryStandard.setID(ID + id);
+        }
+        if (StringUtils.isEmpty(hrmsSalaryStandard.getCreatedTime().toString())){
+            String date = DateUtils.getDate();
+            hrmsSalaryStandard.setCreatedTime(date);
         }
         return hrmsSalaryStandardMapper.insertHrmsSalaryStandard(hrmsSalaryStandard);
     }
@@ -108,13 +111,12 @@ public class HrmsSalaryStandardServiceImpl implements IHrmsSalaryStandardService
         List<HrmsSalaryStandard> list = hrmsSalaryStandardMapper.querySalaryPay();
         Map<String, List<HrmsSalaryStandard>> listMap = list.stream().collect(Collectors.groupingBy(HrmsSalaryStandard::getThreeJjgou));
         list.clear();
-        int number;
         int i = 0;
         for (String s : listMap.keySet()) {
             ++i;
             HrmsSalaryStandard standard = new HrmsSalaryStandard();
             List<HrmsSalaryStandard> standardList = listMap.get(s);
-            number = standardList.size();
+            int number = 0;
             String oneJjgou = "";
             String twoJjgou = "";
             String threeJjgou = "";
@@ -122,11 +124,16 @@ public class HrmsSalaryStandardServiceImpl implements IHrmsSalaryStandardService
             StringBuilder id = new StringBuilder();
             double totalAmount = 0;
             for (HrmsSalaryStandard hrmsSalaryStandard : standardList) {
-                totalAmount += hrmsSalaryStandard.getTotalAmount().doubleValue();
+                if (hrmsSalaryStandard.getTotalAmount() == null){
+                    totalAmount += 0.00D;
+                }else {
+                    totalAmount += hrmsSalaryStandard.getTotalAmount().doubleValue();
+                }
                 oneJjgou = hrmsSalaryStandard.getOneJjgou();
                 twoJjgou = hrmsSalaryStandard.getTwoJjgou();
                 threeJjgou = hrmsSalaryStandard.getThreeJjgou();
                 id.append(",").append(hrmsSalaryStandard.getID());
+                ++number;
             }
             standard.setNumber(number);
             standard.setOneJjgou(oneJjgou);

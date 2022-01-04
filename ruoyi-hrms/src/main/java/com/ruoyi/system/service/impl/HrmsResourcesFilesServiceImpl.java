@@ -56,9 +56,10 @@ public class HrmsResourcesFilesServiceImpl implements IHrmsResourcesFilesService
     @Override
     public int insertHrmsResourcesFiles(HrmsResourcesFiles hrmsResourcesFiles)
     {
-        if (StringUtils.isEmpty(hrmsResourcesFiles.getID())){
-            String id = UUID.randomUUID().toString().replace("-", "");
-            hrmsResourcesFiles.setID(id);
+        String ID = "HRMS2022";
+        if(StringUtils.isEmpty(hrmsResourcesFiles.getID())){
+            String id = UUID.randomUUID().toString().hashCode()+"";
+            hrmsResourcesFiles.setID(ID + id);
         }
         return hrmsResourcesFilesMapper.insertHrmsResourcesFiles(hrmsResourcesFiles);
     }

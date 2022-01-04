@@ -8,6 +8,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import com.ruoyi.common.annotation.Excel;
 import com.ruoyi.common.core.domain.BaseEntity;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * 薪酬标准对象 hrms_salary_standard
  * 
@@ -64,7 +66,7 @@ public class HrmsSalaryStandard extends BaseEntity
     /** 创建时间 */
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Excel(name = "创建时间", width = 30, dateFormat = "yyyy-MM-dd")
-    private Date createdTime;
+    private String createdTime;
 
     /** 更新人 */
     @Excel(name = "更新人")
@@ -73,9 +75,10 @@ public class HrmsSalaryStandard extends BaseEntity
     /** 更新时间 */
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Excel(name = "更新时间", width = 30, dateFormat = "yyyy-MM-dd")
-    private Date updatedTime;
+    private String updatedTime;
 
     /** 薪资总额 */
+    @NotNull
     @Excel(name = "薪资总额")
     private BigDecimal totalAmount;
 
@@ -286,15 +289,7 @@ public class HrmsSalaryStandard extends BaseEntity
     {
         return createdBy;
     }
-    public void setCreatedTime(Date createdTime) 
-    {
-        this.createdTime = createdTime;
-    }
 
-    public Date getCreatedTime() 
-    {
-        return createdTime;
-    }
     public void setUpdatedBy(String updatedBy) 
     {
         this.updatedBy = updatedBy;
@@ -304,15 +299,7 @@ public class HrmsSalaryStandard extends BaseEntity
     {
         return updatedBy;
     }
-    public void setUpdatedTime(Date updatedTime) 
-    {
-        this.updatedTime = updatedTime;
-    }
 
-    public Date getUpdatedTime() 
-    {
-        return updatedTime;
-    }
     public void setTotalAmount(BigDecimal totalAmount) 
     {
         this.totalAmount = totalAmount;
@@ -321,6 +308,22 @@ public class HrmsSalaryStandard extends BaseEntity
     public BigDecimal getTotalAmount() 
     {
         return totalAmount;
+    }
+
+    public String getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(String createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    public String getUpdatedTime() {
+        return updatedTime;
+    }
+
+    public void setUpdatedTime(String updatedTime) {
+        this.updatedTime = updatedTime;
     }
 
     @Override
