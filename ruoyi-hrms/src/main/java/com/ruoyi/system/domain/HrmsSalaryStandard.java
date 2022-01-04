@@ -83,31 +83,24 @@ public class HrmsSalaryStandard extends BaseEntity
     private BigDecimal totalAmount;
 
     /** 一级机构 */
-    @Excel(name = "一级机构")
     private String oneJjgou;
 
     /** 二级机构 */
-    @Excel(name = "二级机构")
     private String twoJjgou;
 
     /** 三级机构 */
-    @Excel(name = "三级机构")
     private String threeJjgou;
 
     /** 职位分类 */
-    @Excel(name = "职位分类")
     private String ZWFL;
 
     /** 职位名称 */
-    @Excel(name = "职位名称")
     private String ZWMC;
 
     /** 职称 */
-    @Excel(name = "职称")
     private String ZC;
 
     /** 姓名 */
-    @Excel(name = "姓名")
     private String pNAME;
 
     private String index;
