@@ -124,9 +124,8 @@
             <if test="YLIAOBX != null">YLIAOBX = #{YLIAOBX},</if>
             <if test="ZFGJJ != null">ZFGJJ = #{ZFGJJ},</if>
             <if test="createdBy != null">CREATED_BY = #{createdBy},</if>
-            <if test="createdTime != null">CREATED_TIME = #{createdTime},</if>
-            <if test="updatedBy != null">UPDATED_BY = #{updatedBy},</if>
-            <if test="updatedTime != null">UPDATED_TIME = #{updatedTime},</if>
+            <if test="beginTime != null  and beginTime != '' and endTime != null  and endTime != ''"> <![CDATA[ and CREATED_BY >= #{beginTime} and CREATED_BY <= #{endTime} ]]></if>
+
             <if test="totalAmount != null">TOTAL_AMOUNT = #{totalAmount},</if>
         </trim>
         where ID = #{ID}

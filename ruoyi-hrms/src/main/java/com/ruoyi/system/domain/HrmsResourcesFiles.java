@@ -164,7 +164,7 @@ public class HrmsResourcesFiles extends BaseEntity
     /** 创建时间 */
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Excel(name = "创建时间", width = 30, dateFormat = "yyyy-MM-dd")
-    private Date createdTime;
+    private String createdTime;
 
     /** 更新人 */
     @Excel(name = "更新人")
@@ -173,9 +173,28 @@ public class HrmsResourcesFiles extends BaseEntity
     /** 更新时间 */
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Excel(name = "更新时间", width = 30, dateFormat = "yyyy-MM-dd")
-    private Date updatedTime;
+    private String updatedTime;
 
-    public void setID(String ID) 
+    private String beginTime;
+    private String endTime;
+
+    public String getBeginTime() {
+        return beginTime;
+    }
+
+    public void setBeginTime(String beginTime) {
+        this.beginTime = beginTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setID(String ID)
     {
         this.ID = ID;
     }
@@ -499,32 +518,33 @@ public class HrmsResourcesFiles extends BaseEntity
     {
         return createdBy;
     }
-    public void setCreatedTime(Date createdTime) 
-    {
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public String getCreatedTime() {
+        return createdTime;
+    }
+
+    public void setCreatedTime(String createdTime) {
         this.createdTime = createdTime;
     }
 
-    public Date getCreatedTime() 
-    {
-        return createdTime;
+    public String getUpdatedBy() {
+        return updatedBy;
     }
-    public void setUpdatedBy(String updatedBy) 
-    {
+
+    public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
     }
 
-    public String getUpdatedBy() 
-    {
-        return updatedBy;
-    }
-    public void setUpdatedTime(Date updatedTime) 
-    {
-        this.updatedTime = updatedTime;
+    public String getUpdatedTime() {
+        return updatedTime;
     }
 
-    public Date getUpdatedTime() 
-    {
-        return updatedTime;
+    public void setUpdatedTime(String updatedTime) {
+        this.updatedTime = updatedTime;
     }
 
     @Override

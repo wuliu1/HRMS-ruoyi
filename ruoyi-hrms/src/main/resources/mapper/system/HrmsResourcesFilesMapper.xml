@@ -87,10 +87,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="RESUME != null  and RESUME != ''"> and RESUME = #{RESUME}</if>
             <if test="familyData != null  and familyData != ''"> and FAMILY_DATA = #{familyData}</if>
             <if test="COMMENT != null  and COMMENT != ''"> and COMMENT = #{COMMENT}</if>
-            <if test="createdBy != null  and createdBy != ''"> and CREATED_BY = #{createdBy}</if>
-            <if test="createdTime != null "> and CREATED_TIME = #{createdTime}</if>
-            <if test="updatedBy != null  and updatedBy != ''"> and UPDATED_BY = #{updatedBy}</if>
-            <if test="updatedTime != null "> and UPDATED_TIME = #{updatedTime}</if>
+            <if test="beginTime != null  and beginTime != '' and endTime != null  and endTime != ''"> <![CDATA[ and CREATED_BY >= #{beginTime} and CREATED_BY <= #{endTime} ]]></if>
+
         </where>
     </select>
     

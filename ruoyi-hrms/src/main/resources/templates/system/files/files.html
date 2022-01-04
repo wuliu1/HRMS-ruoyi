@@ -11,21 +11,21 @@
                 <div class="select-list">
                     <ul>
                         <li>
-                            一级机构：<select name="status" th:with="type=${@dict.getType('sys_yijijigou')}">
+                            一级机构：<select name="oneJjgou" th:with="type=${@dict.getType('sys_yijijigou')}">
                             <option value="">所有</option>
                             <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
                                     th:value="${dict.dictValue}"></option>
                         </select>
                         </li>
                         <li>
-                            二级机构：<select name="status" th:with="type=${@dict.getType('sys_erjijigou')}">
+                            二级机构：<select name="twoJjgou" th:with="type=${@dict.getType('sys_erjijigou')}">
                             <option value="">所有</option>
                             <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
                                     th:value="${dict.dictValue}"></option>
                         </select>
                         </li>
                         <li>
-                            三级机构：<select name="status" th:with="type=${@dict.getType('sys_sanjijigou')}">
+                            三级机构：<select name="threeJjgou" th:with="type=${@dict.getType('sys_sanjijigou')}">
                             <option value="">所有</option>
                             <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
                                     th:value="${dict.dictValue}"></option>
@@ -34,10 +34,10 @@
                         <li class="select-time">
                             <label>创建时间： </label>
                             <input type="text" class="time-input" id="startTime" placeholder="开始时间"
-                                   name="params[beginTime]"/>
+                                   name="beginTime"/>
                             <span>-</span>
                             <input type="text" class="time-input" id="endTime" placeholder="结束时间"
-                                   name="params[endTime]"/>
+                                   name="endTime"/>
                         </li>
                         <li>
                             <a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i
