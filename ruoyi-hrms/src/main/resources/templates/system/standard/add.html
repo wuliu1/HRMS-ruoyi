@@ -45,7 +45,7 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label">基本工资：</label>
                 <div class="col-sm-8">
-                    <input name="JBGZ" class="form-control" type="text">
+                    <input id="JBGZ" name="JBGZ" class="form-control" type="text">
                 </div>
             </div>
             <div class="form-group">    
@@ -69,25 +69,25 @@
             <div class="form-group">    
                 <label class="col-sm-3 control-label">养老保险：</label>
                 <div class="col-sm-8">
-                    <input name="YLAOBX" class="form-control" type="text" disabled>
+                    <input id="YLAOBX" name="YLAOBX" class="form-control" type="text" disabled th:value="0.00">
                 </div>
             </div>
             <div class="form-group">    
                 <label class="col-sm-3 control-label">失业保险：</label>
                 <div class="col-sm-8">
-                    <input name="SYBX" class="form-control" type="text" disabled>
+                    <input id="SYBX"  name="SYBX" class="form-control" type="text" disabled th:value="0.00">
                 </div>
             </div>
             <div class="form-group">    
                 <label class="col-sm-3 control-label">医疗保险：</label>
                 <div class="col-sm-8">
-                    <input name="YLIAOBX" class="form-control" type="text" disabled>
+                    <input id="YLIAOBX" name="YLIAOBX" class="form-control" type="text" disabled th:value="0.00">
                 </div>
             </div>
             <div class="form-group">    
                 <label class="col-sm-3 control-label">住房公积金：</label>
                 <div class="col-sm-8">
-                    <input name="ZFGJJ" class="form-control" type="text" disabled>
+                    <input id="ZFGJJ" name="ZFGJJ" class="form-control" type="text" disabled th:value="0.00">
                 </div>
             </div>
 
@@ -97,6 +97,33 @@
     <th:block th:include="include :: datetimepicker-js" />
     <script th:inline="javascript">
         var prefix = ctx + "system/standard"
+
+        window.onload = function () {
+            function $(id) {
+                return document.getElementById(id)
+            }
+            //获取ID函数
+            $("JBGZ").onfocus = function fn() {
+//          获取焦点用onfocus事件。下面，用if语句判断条件是否成立。
+//          当用户没有在表单输入的时候，也就是表单里面是默认字的时候，
+//          清空value值，然后改变字体颜色。
+//                 if($("JBGZ").value == "请输入..."){
+// //                    注意用“==”号，表示等于，单等号意思是赋值。
+//                     $("JBGZ").value = "";
+// //                    清空表单默认字
+//                     $("JBGZ").style.color = "#333";
+// //                    改变字体颜色
+//                 }
+//                 $("YLAOBX").value = $("JBGZ").value * 0.08;
+            }
+            $("JBGZ").onblur = function fn() {
+                $("YLAOBX").value = Math.round(($("JBGZ").value * 0.08)*100)/100 ;
+                $("SYBX").value = Math.round(($("JBGZ").value * 0.02 + 3)*100)/100;
+                $("YLIAOBX").value = Math.round(($("JBGZ").value * 0.05)*100)/100 ;
+                $("ZFGJJ").value = Math.round(($("JBGZ").value * 0.08)*100)/100 ;
+            }
+        }
+
         $("#form-standard-add").validate({
             focusCleanup: true
         });
