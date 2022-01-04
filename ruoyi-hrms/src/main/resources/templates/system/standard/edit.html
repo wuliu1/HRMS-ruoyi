@@ -26,25 +26,25 @@
             <div class="form-group">
                 <label class="col-sm-3 control-label">基本工资：</label>
                 <div class="col-sm-8">
-                    <input name="JBGZ" th:field="*{JBGZ}" class="form-control" type="text">
+                    <input name="JBGZ" th:field="*{JBGZ}" class="form-control" type="text" onblur="getTotalAmount('JBGZ')">
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-sm-3 control-label">交通补助：</label>
                 <div class="col-sm-8">
-                    <input name="JTBZ" th:field="*{JTBZ}" class="form-control" type="text">
+                    <input name="JTBZ" th:field="*{JTBZ}" class="form-control" type="text" onblur="getTotalAmount('')">
                 </div>
             </div>
             <div class="form-group">    
                 <label class="col-sm-3 control-label">午餐补助：</label>
                 <div class="col-sm-8">
-                    <input name="WCBZ" th:field="*{WCBZ}" class="form-control" type="text">
+                    <input name="WCBZ" th:field="*{WCBZ}" class="form-control" type="text" onblur="getTotalAmount('')">
                 </div>
             </div>
             <div class="form-group">    
                 <label class="col-sm-3 control-label">通讯补助：</label>
                 <div class="col-sm-8">
-                    <input name="TXBZ" th:field="*{TXBZ}" class="form-control" type="text">
+                    <input name="TXBZ" th:field="*{TXBZ}" class="form-control" type="text" onblur="getTotalAmount('')">
                 </div>
             </div>
             <div class="form-group">    
@@ -110,6 +110,24 @@
         $("#form-standard-edit").validate({
             focusCleanup: true
         });
+
+        function getAmount() {
+            var jbgz = $("#JBGZ").val();
+            console.log(jbgz);
+            $("#YLAOBX").val(Math.round((jbgz * 0.08) * 100) / 100);
+            $("#SYBX").val(Math.round((jbgz * 0.02 + 3) * 100) / 100);
+            $("#YLIAOBX").val(Math.round((jbgz * 0.05) * 100) / 100);
+            $("#ZFGJJ").val(Math.round((jbgz * 0.08) * 100) / 100);
+        }
+
+        function getTotalAmount(flag) {
+            if (flag === 'JBGZ') {
+                getAmount();
+            }
+            var totalAmount = Math.round($("#JBGZ").val()) + Math.round($("#JTBZ").val()) + Math.round($("#WCBZ").val()) + Math.round($("#TXBZ").val()) +
+                Math.round($("#YLAOBX").val()) + Math.round($("#SYBX").val()) + Math.round($("#YLIAOBX").val()) + Math.round($("#ZFGJJ").val());
+            $("#totalAmount").val(totalAmount);
+        }
 
         function submitHandler() {
             if ($.validate.form()) {
