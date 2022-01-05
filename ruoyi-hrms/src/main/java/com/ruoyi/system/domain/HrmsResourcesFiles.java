@@ -178,6 +178,16 @@ public class HrmsResourcesFiles extends BaseEntity
     private String beginTime;
     private String endTime;
 
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public String getBeginTime() {
         return beginTime;
     }

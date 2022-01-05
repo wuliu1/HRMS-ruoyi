@@ -44,15 +44,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="createdTime"    column="CREATED_TIME"    />
         <result property="updatedBy"    column="UPDATED_BY"    />
         <result property="updatedTime"    column="UPDATED_TIME"    />
+        <result property="status"    column="STATUS"    />
     </resultMap>
 
     <sql id="selectHrmsResourcesFilesVo">
-        select ID, ONE_JJGOU, TWO_JJGOU, THREE_JJGOU, ZWFL, ZWMC, ZC, NAME, SEX, EMAIL, PHONE, QQ, MOBILE_PHONE, ADDRESS, POSTCODE, NATIONALITY, BIRTH_PLACE, BIRTHDAY, NATION, RELIGIOUS, POLITICAL, ID_NUMBER, SHBZM, AGE, EDUCATION, EDUCATION_YEAR, PROFESSIONAL, SALARY_STANDARD, OPEN_BANK, ACCOUNT, SPECIALITY, HOBBY, RESUME, FAMILY_DATA, COMMENT, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME from hrms_resources_files
+        select ID, ONE_JJGOU, TWO_JJGOU, THREE_JJGOU, ZWFL, ZWMC, ZC, NAME, SEX, EMAIL, PHONE, QQ, MOBILE_PHONE, ADDRESS, POSTCODE, NATIONALITY, BIRTH_PLACE, BIRTHDAY, NATION, RELIGIOUS, POLITICAL, ID_NUMBER, SHBZM, AGE, EDUCATION, EDUCATION_YEAR, PROFESSIONAL, SALARY_STANDARD, OPEN_BANK, ACCOUNT, SPECIALITY, HOBBY, RESUME, FAMILY_DATA, COMMENT, CREATED_BY, CREATED_TIME, UPDATED_BY, UPDATED_TIME, STATUS from hrms_resources_files
     </sql>
 
     <select id="selectHrmsResourcesFilesList" parameterType="HrmsResourcesFiles" resultMap="HrmsResourcesFilesResult">
         <include refid="selectHrmsResourcesFilesVo"/>
-        <where>  
+        <where>
             <if test="oneJjgou != null  and oneJjgou != ''"> and ONE_JJGOU = #{oneJjgou}</if>
             <if test="twoJjgou != null  and twoJjgou != ''"> and TWO_JJGOU = #{twoJjgou}</if>
             <if test="threeJjgou != null  and threeJjgou != ''"> and THREE_JJGOU = #{threeJjgou}</if>
@@ -69,13 +70,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="POSTCODE != null  and POSTCODE != ''"> and POSTCODE = #{POSTCODE}</if>
             <if test="NATIONALITY != null  and NATIONALITY != ''"> and NATIONALITY = #{NATIONALITY}</if>
             <if test="birthPlace != null  and birthPlace != ''"> and BIRTH_PLACE = #{birthPlace}</if>
-            <if test="BIRTHDAY != null "> and BIRTHDAY = #{BIRTHDAY}</if>
+            <if test="BIRTHDAY != null  and BIRTHDAY != ''"> and BIRTHDAY = #{BIRTHDAY}</if>
             <if test="NATION != null  and NATION != ''"> and NATION = #{NATION}</if>
             <if test="RELIGIOUS != null  and RELIGIOUS != ''"> and RELIGIOUS = #{RELIGIOUS}</if>
             <if test="POLITICAL != null  and POLITICAL != ''"> and POLITICAL = #{POLITICAL}</if>
             <if test="idNumber != null  and idNumber != ''"> and ID_NUMBER = #{idNumber}</if>
             <if test="SHBZM != null  and SHBZM != ''"> and SHBZM = #{SHBZM}</if>
             <if test="AGE != null "> and AGE = #{AGE}</if>
+            <if test="status != null "> and STATUS = #{status}</if>
             <if test="EDUCATION != null  and EDUCATION != ''"> and EDUCATION = #{EDUCATION}</if>
             <if test="educationYear != null  and educationYear != ''"> and EDUCATION_YEAR = #{educationYear}</if>
             <if test="PROFESSIONAL != null  and PROFESSIONAL != ''"> and PROFESSIONAL = #{PROFESSIONAL}</if>
@@ -91,12 +93,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
         </where>
     </select>
-    
+
     <select id="selectHrmsResourcesFilesByID" parameterType="String" resultMap="HrmsResourcesFilesResult">
         <include refid="selectHrmsResourcesFilesVo"/>
         where ID = #{ID}
     </select>
-        
+
     <insert id="insertHrmsResourcesFiles" parameterType="HrmsResourcesFiles">
         insert into hrms_resources_files
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -139,7 +141,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="createdTime != null">CREATED_TIME,</if>
             <if test="updatedBy != null">UPDATED_BY,</if>
             <if test="updatedTime != null">UPDATED_TIME,</if>
-         </trim>
+            <if test="status != null">STATUS,</if>
+        </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
             <if test="ID != null">#{ID},</if>
             <if test="oneJjgou != null">#{oneJjgou},</if>
@@ -180,7 +183,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="createdTime != null">#{createdTime},</if>
             <if test="updatedBy != null">#{updatedBy},</if>
             <if test="updatedTime != null">#{updatedTime},</if>
-         </trim>
+            <if test="status != null">#{status},</if>
+        </trim>
     </insert>
 
     <update id="updateHrmsResourcesFiles" parameterType="HrmsResourcesFiles">
@@ -224,6 +228,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="createdTime != null">CREATED_TIME = #{createdTime},</if>
             <if test="updatedBy != null">UPDATED_BY = #{updatedBy},</if>
             <if test="updatedTime != null">UPDATED_TIME = #{updatedTime},</if>
+            <if test="status != null">STATUS = #{status},</if>
         </trim>
         where ID = #{ID}
     </update>
@@ -233,7 +238,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </delete>
 
     <delete id="deleteHrmsResourcesFilesByIDs" parameterType="String">
-        delete from hrms_resources_files where ID in 
+        delete from hrms_resources_files where ID in
         <foreach item="ID" collection="array" open="(" separator="," close=")">
             #{ID}
         </foreach>

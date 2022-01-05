@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import com.ruoyi.common.core.domain.entity.SysDept;
 import com.ruoyi.common.utils.DateUtils;
+import com.ruoyi.common.utils.ShiroUtils;
 import com.ruoyi.common.utils.StringUtils;
 import com.ruoyi.system.service.ISysDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,9 @@ public class HrmsResourcesFilesServiceImpl implements IHrmsResourcesFilesService
         hrmsResourcesFiles.setOneJjgou(getJjgou(hrmsResourcesFiles.getOneJjgou()));
         hrmsResourcesFiles.setTwoJjgou(getJjgou(hrmsResourcesFiles.getTwoJjgou()));
         hrmsResourcesFiles.setThreeJjgou(getJjgou(hrmsResourcesFiles.getThreeJjgou()));
+        if (!ShiroUtils.getSysUser().isAdmin()) {
+            hrmsResourcesFiles.setStatus("1");
+        }
         return hrmsResourcesFilesMapper.selectHrmsResourcesFilesList(hrmsResourcesFiles);
     }
 
@@ -73,6 +77,7 @@ public class HrmsResourcesFilesServiceImpl implements IHrmsResourcesFilesService
         if (StringUtils.isEmpty(hrmsResourcesFiles.getCreatedTime())){
             hrmsResourcesFiles.setCreatedTime(DateUtils.getDate());
         }
+        hrmsResourcesFiles.setStatus("1");
         hrmsResourcesFiles.setOneJjgou(getJjgou(hrmsResourcesFiles.getOneJjgou()));
         hrmsResourcesFiles.setTwoJjgou(getJjgou(hrmsResourcesFiles.getTwoJjgou()));
         hrmsResourcesFiles.setThreeJjgou(getJjgou(hrmsResourcesFiles.getThreeJjgou()));
@@ -111,7 +116,11 @@ public class HrmsResourcesFilesServiceImpl implements IHrmsResourcesFilesService
     @Override
     public int deleteHrmsResourcesFilesByIDs(String IDs)
     {
-        return hrmsResourcesFilesMapper.deleteHrmsResourcesFilesByIDs(Convert.toStrArray(IDs));
+        String[] split = IDs.split(",");
+        for (String s : split) {
+            deleteHrmsResourcesFilesByID(s);
+        }
+        return split.length;
     }
 
     /**
@@ -123,6 +132,13 @@ public class HrmsResourcesFilesServiceImpl implements IHrmsResourcesFilesService
     @Override
     public int deleteHrmsResourcesFilesByID(String ID)
     {
-        return hrmsResourcesFilesMapper.deleteHrmsResourcesFilesByID(ID);
+        HrmsResourcesFiles hrmsResourcesFiles = new HrmsResourcesFiles();
+        hrmsResourcesFiles.setID(ID);
+        List<HrmsResourcesFiles> list = hrmsResourcesFilesMapper.selectHrmsResourcesFilesList(hrmsResourcesFiles);
+        if (list != null || list.size() > 0){
+            hrmsResourcesFiles = list.get(0);
+        }
+        hrmsResourcesFiles.setStatus("0");
+        return hrmsResourcesFilesMapper.updateHrmsResourcesFiles(hrmsResourcesFiles);
     }
 }
