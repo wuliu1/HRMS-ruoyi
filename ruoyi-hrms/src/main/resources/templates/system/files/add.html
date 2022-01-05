@@ -11,28 +11,61 @@
         <div class="form-group">
             <label class="col-sm-2 control-label">一级机构：</label>
             <div class="col-sm-4">
-                <select id="oneJjgou" name="oneJjgou" class="form-control m-b" th:with="type=${@dict.getType('sys_yijijigou')}">
-                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                            th:value="${dict.dictValue}"></option>
+<!--                <select id="oneJjgou" name="oneJjgou" class="form-control m-b"-->
+<!--                        th:with="type=${@dict.getType('sys_yijijigou')}">-->
+<!--                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}"-->
+<!--                            th:value="${dict.dictValue}"></option>-->
+<!--                </select>-->
+
+                <select id="oneJjgou" class="form-control m-b" name="oneJjgou">
+                    <option value="00">---请选择---</option>
                 </select>
+            </div>
+            <div class="form-group" hidden>
+                <label class="col-sm-3 control-label">机构名称：</label>
+                <div class="col-sm-8">
+                    <input name="belongYJName" id="belongYJName" class="form-control" type="text">
+                </div>
             </div>
 
             <label class="col-sm-2 control-label">二级机构：</label>
             <div class="col-sm-4">
-                <select id="twoJjgou" name="twoJjgou" class="form-control m-b" th:with="type=${@dict.getType('sys_erjijigou')}">
-                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                            th:value="${dict.dictValue}"></option>
+<!--                <select id="twoJjgou" name="twoJjgou" class="form-control m-b"-->
+<!--                        th:with="type=${@dict.getType('sys_erjijigou')}">-->
+<!--                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}"-->
+<!--                            th:value="${dict.dictValue}"></option>-->
+<!--                </select>-->
+                <select id="twoJjgou" class="form-control m-b" name="twoJjgou">
+                    <option th:value="00">---请选择---</option>
                 </select>
+
+            </div>
+            <div class="form-group" hidden>
+                <label class="col-sm-3 control-label">机构名称：</label>
+                <div class="col-sm-8">
+                    <input name="ivtStr2" id="ivtStr2" class="form-control" type="text">
+                </div>
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-sm-2 control-label">三级机构：</label>
             <div class="col-sm-4">
-                <select id="threeJjgou" name="threeJjgou" class="form-control m-b" th:with="type=${@dict.getType('sys_sanjijigou')}">
-                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                            th:value="${dict.dictValue}"></option>
+<!--                <select id="threeJjgou" name="threeJjgou" class="form-control m-b"-->
+<!--                        th:with="type=${@dict.getType('sys_sanjijigou')}">-->
+<!--                    <option th:each="dict : ${type}" th:text="${dict.dictLabel}"-->
+<!--                            th:value="${dict.dictValue}"></option>-->
+<!--                </select>-->
+                <select id="threeJjgou" class="form-control m-b" name="threeJjgou">
+                    <option th:value="00">---请选择---</option>
                 </select>
+            </div>
+
+            <div class="form-group" hidden>
+                <label class="col-sm-3 control-label">机构名称：</label>
+                <div class="col-sm-8">
+                    <input name="ivtStr4" id="ivtStr4" class="form-control" type="text">
+                </div>
             </div>
         </div>
 
@@ -265,6 +298,103 @@
 <th:block th:include="include :: footer"/>
 <th:block th:include="include :: datetimepicker-js"/>
 <script th:inline="javascript">
+
+    // var start_deptId = "";  //部门id
+    var start_parentId = 0; //父级部门id
+    var ancestors = 0; //祖级部门id
+    //页面一加载调取后台查询全部省份的方法
+    $.ajax({
+        url: ctx + "system/dept/list",
+        type: "post",
+        dataType: "json",
+        data: {
+            // "deptId": start_deptId,
+            "parentId": start_parentId,
+            "ancestors": ancestors
+        },
+        success: function (data) {
+            $(data).each(function (a, b) {
+                $("#oneJjgou").append("<option value='" + b.deptId + "'>" + b.deptName + "</option>");
+            });
+        },
+        error: function () {
+
+        }
+    });
+    //选择省份，保存省份编码和对应名称，以及联动市级下拉框数据
+    $("#oneJjgou").change(function () {
+        // var p_provinceId = "";
+        var p_parentId = "";
+        var ancestors = "";
+        $("#twoJjgou").empty();
+        $("#threeJjgou").empty();
+        var a = $("#oneJjgou option:selected").text();
+        $("#belongYJName").val(a);
+        var p_parentId = $("#oneJjgou").val();
+        if (p_parentId != '00') {
+            $.ajax({
+                url: ctx + "system/dept/list",
+                type: "post",
+                dataType: "json",
+                data: {
+                    // "provinceId": p_provinceId,
+                    "parentId": p_parentId,
+                    "ancestors": ancestors
+                },
+                success: function (data) {
+                    $("#twoJjgou").append("<option value='00'>---请选择---</option>");
+                    $(data).each(function (a, b) {
+                        $("#twoJjgou").append("<option value='" + b.deptId + "'>" + b.deptName + "</option>");
+                    });
+                },
+                error: function () {
+                }
+            });
+        }else {
+            $("#twoJjgou").append("<option value='00'>---请选择---</option>");
+            $("#threeJjgou").append("<option value='00'>---请选择---</option>");
+        }
+
+    });
+    //选择城市，保存城市编码和对应名称，以及联动县级下拉框数据
+    $("#twoJjgou").change(function () {
+        // var c_provinceId = "";
+        var c_parentId = "";
+        var ancestors = "";
+        $("#threeJjgou").empty();
+        var c_parentId = $("#twoJjgou").val();
+        var a = $("#twoJjgou option:selected").text();
+        $("#ivtStr2").val(a);
+        if (c_parentId != '00') {
+            $.ajax({
+                url: ctx + "system/dept/list",
+                type: "post",
+                dataType: "json",
+                data: {
+                    // "provinceId": c_provinceId,
+                    "parentId": c_parentId,
+                    "ancestors": ancestors
+                },
+                success: function (data) {
+                    $("#threeJjgou").append("<option value='0'>---请选择---</option>");
+                    $(data).each(function (a, b) {
+                        $("#threeJjgou").append("<option value='" + b.deptId + "'>" + b.deptName + "</option>");
+                    });
+                },
+                error: function () {
+                }
+            });
+        }else {
+            $("#threeJjgou").append("<option value='0'>---请选择---</option>");
+        }
+    });
+    //选择区县，保存区县编码和对应名称
+    $("#threeJjgou").change(function () {
+        $("#town").empty();
+        var a = $("#threeJjgou option:selected").text();
+        $("#ivtStr4").val(a);
+    });
+
     var prefix = ctx + "system/files"
     $("#form-files-add").validate({
         focusCleanup: true

@@ -11,25 +11,34 @@
                 <div class="select-list">
                     <ul>
                         <li>
-                            一级机构：<select name="oneJjgou" th:with="type=${@dict.getType('sys_yijijigou')}">
-                            <option value="">所有</option>
-                            <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                                    th:value="${dict.dictValue}"></option>
+<!--                            一级机构：<select name="oneJjgou" th:with="type=${@dict.getType('sys_yijijigou')}">-->
+<!--                            <option value="">所有</option>-->
+<!--                            <option th:each="dict : ${type}" th:text="${dict.dictLabel}"-->
+<!--                                    th:value="${dict.dictValue}"></option>-->
+<!--                        </select>-->
+                            一级机构:<select id="oneJjgou"  name="oneJjgou">
+<!--                            <option value="00">所有</option>-->
                         </select>
                         </li>
                         <li>
-                            二级机构：<select name="twoJjgou" th:with="type=${@dict.getType('sys_erjijigou')}">
-                            <option value="">所有</option>
-                            <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                                    th:value="${dict.dictValue}"></option>
-                        </select>
+<!--                            二级机构：<select name="twoJjgou" th:with="type=${@dict.getType('sys_erjijigou')}">-->
+<!--                            <option value="">所有</option>-->
+<!--                            <option th:each="dict : ${type}" th:text="${dict.dictLabel}"-->
+<!--                                    th:value="${dict.dictValue}"></option>-->
+<!--                        </select>-->
+                            二级机构:<select id="twoJjgou"  name="twoJjgou">
+                                <option th:value="00">所有</option>
+                            </select>
                         </li>
                         <li>
-                            三级机构：<select name="threeJjgou" th:with="type=${@dict.getType('sys_sanjijigou')}">
-                            <option value="">所有</option>
-                            <option th:each="dict : ${type}" th:text="${dict.dictLabel}"
-                                    th:value="${dict.dictValue}"></option>
-                        </select>
+<!--                            三级机构：<select name="threeJjgou" th:with="type=${@dict.getType('sys_sanjijigou')}">-->
+<!--                            <option value="">所有</option>-->
+<!--                            <option th:each="dict : ${type}" th:text="${dict.dictLabel}"-->
+<!--                                    th:value="${dict.dictValue}"></option>-->
+<!--                        </select>-->
+                            三级机构:<select id="threeJjgou"  name="threeJjgou">
+                                <option th:value="00">所有</option>
+                            </select>
                         </li>
                         <li class="select-time">
                             <label>创建时间： </label>
@@ -76,6 +85,109 @@
     var editFlag = [[${@permission.hasPermi('system:files:edit')}]];
     var removeFlag = [[${@permission.hasPermi('system:files:remove')}]];
     var prefix = ctx + "system/files";
+
+
+    // var start_deptId = "";  //部门id
+    var start_parentId = 0; //父级部门id
+    var ancestors = 0; //祖级部门id
+    //页面一加载调取后台查询全部省份的方法
+    $.ajax({
+        url: ctx + "system/dept/list",
+        type: "post",
+        dataType: "json",
+        data: {
+            // "deptId": start_deptId,
+            "parentId": start_parentId,
+            "ancestors": ancestors
+        },
+        success: function (data) {
+            $("#oneJjgou").append("<option value='00'>所有</option>");
+            $(data).each(function (a, b) {
+                $("#oneJjgou").append("<option value='" + b.deptId + "'>" + b.deptName + "</option>");
+            });
+        },
+        error: function () {
+
+        }
+    });
+    //选择省份，保存省份编码和对应名称，以及联动市级下拉框数据
+    $("#oneJjgou").change(function () {
+        // var p_provinceId = "";
+        var p_parentId = "";
+        var ancestors = "";
+        $("#twoJjgou").empty();
+        $("#threeJjgou").empty();
+        var a = $("#oneJjgou option:selected").text();
+        $("#belongYJName").val(a);
+        var p_parentId = $("#oneJjgou").val();
+        if (p_parentId != '00') {
+            // $("#twoJjgou").append("<option value='0'>请选择二级机构</option>");
+            $("#threeJjgou").append("<option value='00'>所有</option>");
+            $.ajax({
+                url: ctx + "system/dept/list",
+                type: "post",
+                dataType: "json",
+                data: {
+                    // "provinceId": p_provinceId,
+                    "parentId": p_parentId,
+                    "ancestors": ancestors
+                },
+                success: function (data) {
+                    $("#twoJjgou").append("<option value='00'>所有</option>");
+                    $(data).each(function (a, b) {
+                        $("#twoJjgou").append("<option value='" + b.deptId + "'>" + b.deptName + "</option>");
+                    });
+                },
+                error: function () {
+                }
+            });
+        }else {
+            $("#twoJjgou").append("<option value='00'>所有</option>");
+            $("#threeJjgou").append("<option value='00'>所有</option>");
+        }
+
+    });
+    //选择城市，保存城市编码和对应名称，以及联动县级下拉框数据
+    $("#twoJjgou").change(function () {
+        // var c_provinceId = "";
+        var c_parentId = "";
+        var ancestors = "";
+        $("#threeJjgou").empty();
+        var c_parentId = $("#twoJjgou").val();
+        var a = $("#twoJjgou option:selected").text();
+        $("#ivtStr2").val(a);
+        if (c_parentId != '00') {
+            $.ajax({
+                url: ctx + "system/dept/list",
+                type: "post",
+                dataType: "json",
+                data: {
+                    // "provinceId": c_provinceId,
+                    "parentId": c_parentId,
+                    "ancestors": ancestors
+                },
+                success: function (data) {
+                    $("#threeJjgou").append("<option value=''>所有</option>");
+                    $(data).each(function (a, b) {
+                        $("#threeJjgou").append("<option value='" + b.deptId + "'>" + b.deptName + "</option>");
+                    });
+                },
+                error: function () {
+                }
+            });
+        }else {
+            $("#threeJjgou").append("<option value='00'>所有</option>");
+        }
+    });
+    //选择区县，保存区县编码和对应名称
+    $("#threeJjgou").change(function () {
+        $("#town").empty();
+        var a = $("#threeJjgou option:selected").text();
+        $("#ivtStr4").val(a);
+    });
+
+
+
 
     $(function () {
         var options = {

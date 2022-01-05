@@ -3,7 +3,10 @@ package com.ruoyi.system.service.impl;
 import java.util.List;
 import java.util.UUID;
 
+import com.ruoyi.common.core.domain.entity.SysDept;
+import com.ruoyi.common.utils.DateUtils;
 import com.ruoyi.common.utils.StringUtils;
+import com.ruoyi.system.service.ISysDeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.ruoyi.system.mapper.HrmsResourcesFilesMapper;
@@ -22,6 +25,9 @@ public class HrmsResourcesFilesServiceImpl implements IHrmsResourcesFilesService
 {
     @Autowired
     private HrmsResourcesFilesMapper hrmsResourcesFilesMapper;
+
+    @Autowired
+    private ISysDeptService deptService;
 
     /**
      * 查询人力资源档案
@@ -44,6 +50,9 @@ public class HrmsResourcesFilesServiceImpl implements IHrmsResourcesFilesService
     @Override
     public List<HrmsResourcesFiles> selectHrmsResourcesFilesList(HrmsResourcesFiles hrmsResourcesFiles)
     {
+        hrmsResourcesFiles.setOneJjgou(getJjgou(hrmsResourcesFiles.getOneJjgou()));
+        hrmsResourcesFiles.setTwoJjgou(getJjgou(hrmsResourcesFiles.getTwoJjgou()));
+        hrmsResourcesFiles.setThreeJjgou(getJjgou(hrmsResourcesFiles.getThreeJjgou()));
         return hrmsResourcesFilesMapper.selectHrmsResourcesFilesList(hrmsResourcesFiles);
     }
 
@@ -61,7 +70,24 @@ public class HrmsResourcesFilesServiceImpl implements IHrmsResourcesFilesService
             String id = UUID.randomUUID().toString().hashCode()+"";
             hrmsResourcesFiles.setID(ID + id);
         }
+        if (StringUtils.isEmpty(hrmsResourcesFiles.getCreatedTime())){
+            hrmsResourcesFiles.setCreatedTime(DateUtils.getDate());
+        }
+        hrmsResourcesFiles.setOneJjgou(getJjgou(hrmsResourcesFiles.getOneJjgou()));
+        hrmsResourcesFiles.setTwoJjgou(getJjgou(hrmsResourcesFiles.getTwoJjgou()));
+        hrmsResourcesFiles.setThreeJjgou(getJjgou(hrmsResourcesFiles.getThreeJjgou()));
         return hrmsResourcesFilesMapper.insertHrmsResourcesFiles(hrmsResourcesFiles);
+    }
+
+    private String getJjgou(String id){
+        if (StringUtils.isEmpty(id)){
+            return null;
+        }
+        SysDept sysDept = deptService.selectDeptById(Long.parseLong(id));
+        if (sysDept == null){
+            return null;
+        }
+        return sysDept.getDeptName();
     }
 
     /**
