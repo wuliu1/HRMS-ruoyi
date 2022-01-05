@@ -36,14 +36,12 @@ public class SysDeptController extends BaseController
     @Autowired
     private ISysDeptService deptService;
 
-    @RequiresPermissions("system:dept:view")
     @GetMapping()
     public String dept()
     {
         return prefix + "/dept";
     }
 
-    @RequiresPermissions("system:dept:list")
     @PostMapping("/list")
     @ResponseBody
     public List<SysDept> list(SysDept dept)
@@ -70,7 +68,6 @@ public class SysDeptController extends BaseController
      * 新增保存部门
      */
     @Log(title = "部门管理", businessType = BusinessType.INSERT)
-    @RequiresPermissions("system:dept:add")
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addSave(@Validated SysDept dept)
@@ -86,7 +83,6 @@ public class SysDeptController extends BaseController
     /**
      * 修改部门
      */
-    @RequiresPermissions("system:dept:edit")
     @GetMapping("/edit/{deptId}")
     public String edit(@PathVariable("deptId") Long deptId, ModelMap mmap)
     {
@@ -104,7 +100,6 @@ public class SysDeptController extends BaseController
      * 修改保存部门
      */
     @Log(title = "部门管理", businessType = BusinessType.UPDATE)
-    @RequiresPermissions("system:dept:edit")
     @PostMapping("/edit")
     @ResponseBody
     public AjaxResult editSave(@Validated SysDept dept)
@@ -130,7 +125,6 @@ public class SysDeptController extends BaseController
      * 删除
      */
     @Log(title = "部门管理", businessType = BusinessType.DELETE)
-    @RequiresPermissions("system:dept:remove")
     @GetMapping("/remove/{deptId}")
     @ResponseBody
     public AjaxResult remove(@PathVariable("deptId") Long deptId)
